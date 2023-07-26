@@ -1,0 +1,47 @@
+.feature-carddown-container {
+  flex: 0 0 auto;
+  width: var(--dl-size-size-xlarge);
+  height: var(--dl-size-size-medium);
+  display: flex;
+  position: relative;
+  transition: 0.3s;
+  align-items: center;
+  margin-right: var(--dl-space-space-twounits);
+  flex-direction: column;
+  justify-content: center;
+}
+.feature-carddown-container:hover {
+  transform: scale(1.02);
+}
+.feature-carddown-text {
+  color: var(--dl-color-primary-700);
+  font-size: 32px;
+  font-style: normal;
+  transition: 0.3s;
+  font-weight: 500;
+}
+.feature-carddown-text:hover {
+  color: var(--dl-color-gray-white);
+}
+.feature-carddown-text1 {
+  color: var(--dl-color-primary-700);
+  font-size: 16px;
+  transition: 0.3s;
+}
+.feature-carddown-text1:hover {
+  color: var(--dl-color-gray-white);
+}
+
+
+
+@media(max-width: 479px) {
+  .feature-carddown-root-class-name {
+    margin-right: 0px;
+  }
+  .feature-carddown-root-class-name1 {
+    margin-right: 0px;
+  }
+  .feature-carddown-root-class-name2 {
+    margin-right: 0px;
+  }
+}
