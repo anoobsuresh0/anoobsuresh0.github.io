@@ -38,13 +38,13 @@ const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose }) => {
       icon: Folder,
       category: "Pages",
     },
-    {
-      id: "art",
-      title: "Art",
-      description: "Browse my components",
-      icon: Palette,
-      category: "Pages",
-    },
+    // {
+    //   id: "art",
+    //   title: "Art",
+    //   description: "Browse my components",
+    //   icon: Palette,
+    //   category: "Pages",
+    // },
   ];
 
   const filteredSections = sections.filter(

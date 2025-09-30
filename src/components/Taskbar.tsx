@@ -6,26 +6,13 @@ const Taskbar = () => {
   return (
     <div className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 transform items-center gap-4 rounded-full border border-white/20 bg-white/10 p-3 shadow-lg backdrop-blur-sm">
       <a
-        href="https://instagram.com/anoobsuresh0"
+        href="https://peerlist.io/anoobsuresh"
         target="_blank"
         rel="noopener noreferrer"
         className="rounded-full bg-[#282828] p-2 transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-        </svg>
+        <img src="/logo-1695017827473.webp" alt="Peerlist" width={24} height={24} />
+     
       </a>
 
       <a

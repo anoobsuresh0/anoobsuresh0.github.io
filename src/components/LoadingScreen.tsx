@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const words = ["Hello", "Bonjour", "Hola", "नमस्ते", "Ciao"];
+const words = ["Hello", "Bonjour", "Hola", "नमस्ते", "Ciao", "നമസ്കാരം"];
 
 const WordPreloader = ({ onFinish }: { onFinish: () => void }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);

@@ -41,6 +41,14 @@ const About = () => {
           >
             LinkedIn <ArrowUpRight size={16} />
           </a>
+          <a
+            href="https://peerlist.io/anoobsuresh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-white hover:underline text-sm sm:text-base"
+          >
+            Peerlist <ArrowUpRight size={16} />
+          </a>
         </div>
       </div>
     </section>
