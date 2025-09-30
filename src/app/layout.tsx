@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
 
-      <link rel="icon" href="/logo.ico" />
+      <link rel="icon" href="/dev-avatar.ico" />
 
       <body
         className={` ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
