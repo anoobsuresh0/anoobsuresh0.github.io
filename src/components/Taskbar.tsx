@@ -6,7 +6,7 @@ const Taskbar = () => {
   return (
     <div className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 transform items-center gap-4 rounded-full border border-white/20 bg-white/10 p-3 shadow-lg backdrop-blur-sm">
       <a
-        href="https://x.com/SwamiMalode"
+        href="https://instagram.com/anoobsuresh0"
         target="_blank"
         rel="noopener noreferrer"
         className="rounded-full bg-[#282828] p-2 transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105"
@@ -15,19 +15,21 @@ const Taskbar = () => {
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
-          viewBox="0 0 256 256"
-          fill="#ffffff"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <g fillRule="nonzero" stroke="none">
-            <g transform="scale(8.53333, 8.53333)">
-              <path d="M26.37,26l-8.795,-12.822l0.015,0.012l7.93,-9.19h-2.65l-6.46,7.48l-5.13,-7.48h-6.95l8.211,11.971l-0.001,-0.001l-8.66,10.03h2.65l7.182,-8.322l5.708,8.322zM10.23,6l12.34,18h-2.1l-12.35,-18z"></path>
-            </g>
-          </g>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
         </svg>
       </a>
 
       <a
-        href="https://linkedin.com/in/swamimalode"
+        href="https://linkedin.com/in/anoob-suresh-5a48971b5"
         target="_blank"
         rel="noopener noreferrer"
         className="rounded-full bg-[#282828] p-2 transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105"
@@ -49,7 +51,7 @@ const Taskbar = () => {
       </a>
 
       <a
-        href="https://github.com/swamimalode07"
+        href="https://github.com/anoobsuresh0"
         target="_blank"
         rel="noopener noreferrer"
         className="rounded-full bg-[#282828] p-2 transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105"
@@ -72,27 +74,22 @@ const Taskbar = () => {
       </a>
 
       <a
-        href="https://cal.com/swamimalode"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="mailto:anoobsuresh0@gmail.com"
         className="rounded-full bg-[#282828] p-2 transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:scale-105"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
-          viewBox="0 0 21 21"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <text
-            x="0"
-            y="15"
-            fontFamily="Arial, sans-serif"
-            fontSize="12"
-            fill="#ffffff"
-            fontWeight="bold"
-          >
-            Cal.
-          </text>
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
         </svg>
       </a>
 

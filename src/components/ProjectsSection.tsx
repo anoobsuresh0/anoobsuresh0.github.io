@@ -10,22 +10,22 @@ const ProjectsSection = () => {
       </div>
 
       <ProjectsCard
-        title="Layers  Landing Page"
-        description="Animated landing page."
-        image="/layers.png"
-          url="https://landing.swamimalode.online/"
+        title="Recruito HR Management Platform"
+        description="HR Management Platform"
+        image="/recruito.png"
+        url="https://recruito.perleybrook.com/"
       />
       <ProjectsCard
-        title="GhostType"
-        description="Minimalist Typing website."
-        image="/ghosttype.png"
-        url="https://ghosttype.swamimalode.online/"
+        title="Refly"
+        description="Share files instantly between devices using QR codes. No signup, no servers, no limits - just pure peer-to-peer magic."
+        image="/refly.png"
+        url="https://www.refly.live"
       />
       <ProjectsCard
-        title="Anieditor"
-        description="Anime Overlay Editor."
-        image="/anieditor.png"
-        url="https://anieditor.swamimalode.online/"
+        title="Flagman Dashboard"
+        description="A IoT product dashboard, with analytics and insights."
+        image="/chief-dashboard.png"
+        url="https://apar.flagman.ai/"
       />
     </>
   );

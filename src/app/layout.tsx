@@ -24,27 +24,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Swami Malode",
-  description: "Swami's Portfolio site.",
+  title: "Anoob Suresh",
+  description: "Anoob Suresh's Portfolio - Frontend Developer & UI/UX Designer",
   keywords: [
     "Frontend Developer",
     "UI/UX Designer",
     "Next.js Portfolio",
     "React Developer",
     "Tailwind CSS",
-    "Swami Malode",
+    "Anoob Suresh",
   ],
   openGraph: {
-    title: "Swami's Portfolio",
-    description: "Swami's Portfolio site.",
-    url: "https://swamimalode.online",
-    siteName: "Swami's Portfolio site",
+    title: "Anoob Suresh's Portfolio",
+    description: "Anoob Suresh's Portfolio - Frontend Developer & UI/UX Designer",
+    url: "https://anoobsuresh0.github.io",
+    siteName: "Anoob Suresh's Portfolio",
     images: [
       {
-        url: "https://swamimalode.online/opengraphh.jpg",
+        url: "https://anoobsuresh0.github.io/opengraphh.jpg",
         width: 1200,
         height: 630,
-        alt: "My OG Image",
+        alt: "Anoob Suresh Portfolio",
       },
     ],
     locale: "en_US",
@@ -52,10 +52,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "My portfoliosite",
-    description: "This is my portfolio.",
-    images: ["https://swamimalode.online/opengraphh.jpg"],
-    creator: "@SwamiMalode",
+    title: "Anoob Suresh's Portfolio",
+    description: "Frontend Developer & UI/UX Designer",
+    images: ["https://anoobsuresh0.github.io/opengraphh.jpg"],
+    creator: "@anoobsuresh0",
   },
 };
 
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
     
-        <link rel="canonical" href="https://swamimalode.online" />
+        <link rel="canonical" href="https://anoobsuresh0.github.io" />
 
         <script
           type="application/ld+json"
@@ -72,15 +72,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Swami Malode",
-              url: "https://swamimalode.online",
+              name: "Anoob Suresh",
+              url: "https://anoobsuresh0.github.io",
               sameAs: [
-                "https://github.com/swamimalode07",
-                "https://linkedin.com/in/swamimalode",
-                "https://x.com/swamimalode",
+                "https://github.com/anoobsuresh0",
+                "https://linkedin.com/in/anoob-suresh-5a48971b5",
               ],
               jobTitle: "Frontend Developer & UI/UX Designer",
-              image: "https://swamimalode.online/opengraphh.jpg",
+              image: "https://anoobsuresh0.github.io/opengraphh.jpg",
             }),
           }}
         />

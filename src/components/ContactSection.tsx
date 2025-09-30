@@ -15,7 +15,7 @@ const ContactSection = () => {
       </p>
       <div className="flex justify-center">
         <motion.a
-          href="mailto:swamimalodeofficial@gmail.com"
+          href="mailto:anoobsuresh0@gmail.com"
           className="flex items-center gap-2 rounded-full border-2 border-[#323232] px-6 py-3 text-white bg-transparent"
           whileHover={{
             y: -4, 

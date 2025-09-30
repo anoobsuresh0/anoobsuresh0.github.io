@@ -35,26 +35,28 @@ const page = () => {
               <Separator />
               <Heading heading="Experience" />
               <ExperienceSection
-                logo="/conduit.png"
-                title="Full Stack  Developer"
-                type="Internship"
+                logo="/perleybrook.png"
+                title="Full Stack Developer"
+                type="Full-time"
                 highlights={[
-                  "Working on Frontend and Backend development for Conduit.",
-                  "Working on modular codebase to ensure scalability and maintainability.",
+                  "Architected and deployed an end-to-end HR platform (Recruitō) using React, TypeScript, Django REST, and PostgreSQL, improving recruitment efficiency by 60%.",
+                  "Built scalable microservices and APIs with Node.js, Django, and PostgreSQL, powering real-time data handling for 10K+ daily active users.",
+                  "Developed a real-time analytics dashboard for IoT hardware (NVIDIA, Intel) with WebSockets, reducing latency by 70% and enabling instant insights.",
+                  "Led cloud deployments on AWS/GCP with Docker and CI/CD pipelines, achieving 99.9% uptime and cutting infrastructure costs by 25%.",
+                  "Mentored and led teams while delivering 15+ projects, driving 95% client satisfaction through technical demos and stakeholder collaboration.",
                 ]}
-                skills={["Javascript", "Next.js", "Tailwind CSS", "Redux"]}
+                skills={["React", "JavaScript", "TypeScript", "HTML", "CSS", "Figma", "Django", "Node.js", "PostgreSQL", "AWS", "GCP", "Docker", "CI/CD"]}
               />
+
               <ExperienceSection
-                color="orange-500"
-                logo="/mach5.png  "
+                logo="/beequizz.avif"
                 title="Frontend Developer"
                 type="Freelance"
                 highlights={[
-                  "Worked as a Frontend Developer, transforming Figma design into fully responsive, high-performance website ",
-                  " Implemented core SEO features: lazy loading, WebP images, clean URLs, meta tags, Open Graph, and accessibility. ",
-                  "Set up essential SEO infrastructure that includes robots.txt, dynamic sitemap.xml, and crawlable internal links.",
+                  "Developed custom web applications using the MERN stack, delivering tailored solutions for business needs.",
+                  "Created Progressive Web Apps (PWAs) with offline support and push notifications to boost user engagement.",
                 ]}
-                skills={["HTML", "Tailwind CSS", "SEO"]}
+                skills={["MERN","HTML", "CSS", "JavaScript", "Figma", "UI Design"]}
               />
               <Separator />
               <Heading heading="About Me" />
