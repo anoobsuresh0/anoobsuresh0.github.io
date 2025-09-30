@@ -66,7 +66,6 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({
               alt={`${title} screenshot`}
               width={400}
               height={250}
-              unoptimized
               className="h-15 w-28 rounded-lg object-cover transition-all duration-300 sm:h-32 sm:w-44 lg:h-[150px] lg:w-[300px]"
               style={{
                 filter: isHovered ? "brightness(1.1)" : "brightness(1)",
