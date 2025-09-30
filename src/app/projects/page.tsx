@@ -25,7 +25,7 @@ const ProjectsPage = () => {
       technologies: ["React", "Tailwind CSS", "Shadcn", "PeerJS"],
       year: "2025",
       image: "/refly.png",
-      github: "swamimalode07/refly",
+      github: "anoobsuresh0/refly",
       live: "https://www.refly.live",
     },
     {
