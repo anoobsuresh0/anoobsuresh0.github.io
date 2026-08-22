@@ -1,11 +1,848 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import avatar from '../assets/avatar.png';
+import recruito from '../assets/recruito.png';
+import chiefDashboard from '../assets/chief-dashboard.png';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const stops = [
+  {
+    when: '2019 · Kerala',
+    note: 'where it started',
+    title: 'Circuits',
+    circuit: true,
+    body: 'Electrical engineering taught me systems thinking — feedback loops, failure modes, tracing a fault node by node until it confesses. The browser turned out to be a circuit I could rewire in seconds.',
+    meta: 'B.Tech EEE · College of Engineering Cherthala',
+  },
+  {
+    when: '2022 · Remote',
+    note: 'first invoices!',
+    title: 'First clients',
+    circuit: false,
+    body: 'Freelance MERN apps, e-commerce with Stripe, offline-first PWAs — for small businesses with real deadlines. I learned to listen, scope, ship, and own everything between the idea and the invoice.',
+    meta: 'MERN · Stripe · PWA · push notifications',
+  },
+  {
+    when: '2023 · Perleybrook Labs',
+    note: 'the deep end',
+    title: 'Production',
+    circuit: false,
+    body: 'Full stack for real: Go and PostgreSQL behind, React and TypeScript in front, Docker and Jenkins underneath. Recruitment platforms, field-service tools, IoT dashboards — used every working day.',
+    meta: 'Go · React · PostgreSQL · Docker · Jenkins',
+  },
+  {
+    when: 'Now',
+    note: 'still curious',
+    title: 'Every layer',
+    circuit: false,
+    body: 'AI-integrated platforms — resume screening with Gemini, real-time WebSocket dashboards, mobile apps with OTA updates. Schema to interface, owned end to end.',
+    meta: 'Gemini · WebSocket · React Native · OTA',
+  },
+];
+
+const projects = [
+  {
+    num: '01',
+    rot: '-1.4deg',
+    tapeRot: '-4deg',
+    name: 'Overwatch',
+    cat: 'field service · offline-first PWA',
+    desc: 'Manages the full industrial equipment lifecycle for 12 user roles. Field engineers capture photos and signatures with zero connectivity — IndexedDB syncs when the network returns.',
+    stackLine: 'Go · React · PostgreSQL · PWA',
+    img: null,
+    ph: 'overwatch — dashboard shot',
+  },
+  {
+    num: '02',
+    rot: '1.1deg',
+    tapeRot: '3deg',
+    name: 'Recruito',
+    cat: 'AI recruitment · HRMS',
+    desc: 'AI resume screening that batch-analyzes PDFs into match scores and skill-gap reports. An 8-stage candidate pipeline that made hiring 60% faster.',
+    stackLine: 'Go · React · Gemini · AWS S3',
+    img: recruito,
+    ph: '',
+  },
+  {
+    num: '03',
+    rot: '-0.9deg',
+    tapeRot: '5deg',
+    name: 'Lore',
+    cat: 'mobile · iOS / Android',
+    desc: 'Cross-platform knowledge-sharing app — a curated team feed of links, tweets and notes. Supabase with row-level security, optimistic updates, OTA releases.',
+    stackLine: 'React Native · Expo · Supabase · TanStack',
+    img: null,
+    ph: 'lore — mobile screens',
+  },
+  {
+    num: '04',
+    rot: '1.3deg',
+    tapeRot: '-3deg',
+    name: 'Flagman',
+    cat: 'IoT desktop · real-time',
+    desc: 'Desktop console managing remote IoT fleets over SSH/SFTP — live WebSocket progress for transfers and updates, self-updating binaries with SHA-256 verification.',
+    stackLine: 'Go · React · WebSocket · AWS S3',
+    img: chiefDashboard,
+    ph: '',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Anoob Suresh — Full-Stack Engineer · Go, React & TypeScript"
+  description="Full-stack engineer in Kerala, India. Seven years from circuits to cloud — building production software with Go, PostgreSQL, React and TypeScript at Perleybrook Labs."
+>
+  <header class="nav">
+    <a href="#top" class="nav-name">Anoob Suresh</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#journey" class="nav-link">the journey</a>
+      <a href="#work" class="nav-link">the work</a>
+      <a href="mailto:anoobsuresh0@gmail.com" class="nav-hello">say hello</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="top" class="hero">
+      <svg data-draw viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" class="hero-traces" fill="none" aria-hidden="true">
+        <path d="M-20 140 H240 V330 H400" stroke="rgba(28,26,23,.3)" stroke-width="1.4"></path>
+        <path d="M-20 210 H150 V330 H240" stroke="rgba(28,26,23,.22)" stroke-width="1.4"></path>
+        <path d="M1460 220 H1220 V420 H1080" stroke="rgba(28,26,23,.3)" stroke-width="1.4"></path>
+        <path d="M1460 300 H1330 V500 H1180 V620" stroke="rgba(28,26,23,.22)" stroke-width="1.4"></path>
+        <path d="M-20 780 H200 V600 H330" stroke="rgba(232,78,27,.5)" stroke-width="1.4"></path>
+        <path d="M-20 700 H120 V780" stroke="rgba(28,26,23,.22)" stroke-width="1.4"></path>
+        <path d="M1460 760 H1280 V680" stroke="rgba(232,78,27,.4)" stroke-width="1.4"></path>
+        <path d="M200 600 l6 -9 l8 14 l8 -14 l8 14 l8 -14 l8 14 l6 -9" stroke="rgba(232,78,27,.6)" stroke-width="1.4"></path>
+        <path d="M1330 380 H1330 M1322 380 H1338 M1322 392 H1338" stroke="rgba(28,26,23,.45)" stroke-width="1.4"></path>
+        <path d="M120 780 V800 M108 800 H132 M112 806 H128 M116 812 H124" stroke="rgba(28,26,23,.4)" stroke-width="1.4"></path>
+        <circle cx="400" cy="330" r="8" stroke="rgba(232,78,27,.35)" stroke-width="1.2" class="spark"></circle>
+        <rect x="222" y="122" width="36" height="36" stroke="rgba(28,26,23,.4)" stroke-width="1.4"></rect>
+        <path d="M230 114 V122 M240 114 V122 M250 114 V122 M230 158 V166 M240 158 V166 M250 158 V166" stroke="rgba(28,26,23,.35)" stroke-width="1.4"></path>
+        <rect x="1202" y="402" width="36" height="36" stroke="rgba(28,26,23,.4)" stroke-width="1.4"></rect>
+        <path d="M1210 394 V402 M1220 394 V402 M1230 394 V402 M1210 438 V446 M1220 438 V446 M1230 438 V446" stroke="rgba(28,26,23,.35)" stroke-width="1.4"></path>
+        <circle cx="400" cy="330" r="4" stroke="rgba(232,78,27,.75)" stroke-width="1.4"></circle>
+        <circle cx="150" cy="210" r="4" stroke="rgba(28,26,23,.45)" stroke-width="1.4"></circle>
+        <circle cx="1080" cy="420" r="4" stroke="rgba(28,26,23,.45)" stroke-width="1.4"></circle>
+        <circle cx="1180" cy="620" r="4" stroke="rgba(232,78,27,.75)" stroke-width="1.4"></circle>
+        <circle cx="330" cy="600" r="4" stroke="rgba(232,78,27,.75)" stroke-width="1.4"></circle>
+        <circle cx="120" cy="780" r="4" stroke="rgba(28,26,23,.45)" stroke-width="1.4"></circle>
+        <circle cx="1280" cy="680" r="4" stroke="rgba(232,78,27,.75)" stroke-width="1.4"></circle>
+        <circle r="3" fill="#E84E1B"><animateMotion dur="9s" repeatCount="indefinite" path="M-20 140 H240 V330 H400"></animateMotion></circle>
+        <circle r="2.5" fill="#E84E1B" opacity=".7"><animateMotion dur="11s" begin="2s" repeatCount="indefinite" path="M1460 220 H1220 V420 H1080"></animateMotion></circle>
+        <circle r="3" fill="#E84E1B" opacity=".8"><animateMotion dur="8s" begin="1s" repeatCount="indefinite" path="M-20 780 H200 V600 H330"></animateMotion></circle>
+        <circle r="2.5" fill="#E84E1B" opacity=".6"><animateMotion dur="10s" begin="3s" repeatCount="indefinite" path="M1460 300 H1330 V500 H1180 V620"></animateMotion></circle>
+      </svg>
+      <div class="hero-grid">
+        <div>
+          <p class="kicker hero-kicker">// full-stack engineer, kerala</p>
+          <h1 class="hero-title">A journey from <em class="nowrap">circuits</em> to&nbsp;<span class="hero-cloud">cloud</span>.</h1>
+          <p class="hero-lede">
+            I started with a soldering iron and ended up with a terminal. Seven years later I still work the same way:
+            take it apart until it makes sense, then build it better. These days that means Go and PostgreSQL on one
+            side, React and TypeScript on the other.
+          </p>
+          <div class="hero-ctas">
+            <a href="#journey" class="cta-primary">Walk the journey ↓</a>
+            <a href="#work" class="cta-secondary">Skip to the work</a>
+          </div>
+        </div>
+        <div class="polaroid-wrap">
+          <div class="polaroid">
+            <Image src={avatar} alt="Anoob Suresh" width={600} class="polaroid-img" loading="eager" />
+            <p class="polaroid-caption">me, probably debugging something</p>
+          </div>
+          <div class="tape" style="top:-10px;left:50%;transform:translateX(-50%) rotate(-3deg);width:74px;height:22px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3D BOARD → CLOUD ============ -->
+    <section class="board" aria-label="The journey, drawn as a circuit board">
+      <div class="board-label">
+        <p class="kicker">// the journey, printed on one board</p>
+        <p class="board-hint">follow the packet: in → 01 → 02 → 03 → cloud</p>
+      </div>
+      <div class="board-stage">
+        <div data-tilt class="board-tilt">
+          <svg viewBox="0 0 900 560" class="board-svg" fill="none" aria-hidden="true">
+            <rect x="30" y="30" width="840" height="500" stroke="rgba(28,26,23,.4)" stroke-width="1.6"></rect>
+            <rect x="44" y="44" width="812" height="472" stroke="rgba(28,26,23,.12)" stroke-width="1"></rect>
+            <circle cx="52" cy="52" r="5" stroke="rgba(28,26,23,.35)" stroke-width="1.4"></circle>
+            <circle cx="848" cy="52" r="5" stroke="rgba(28,26,23,.35)" stroke-width="1.4"></circle>
+            <circle cx="52" cy="508" r="5" stroke="rgba(28,26,23,.35)" stroke-width="1.4"></circle>
+            <circle cx="848" cy="508" r="5" stroke="rgba(28,26,23,.35)" stroke-width="1.4"></circle>
+            <path d="M30 420 H385 V300 H620 V360 H755 V190" stroke="rgba(28,26,23,.45)" stroke-width="1.8"></path>
+            <path d="M14 420 H30 M24 413 L32 420 L24 427" stroke="rgba(232,78,27,.7)" stroke-width="1.6"></path>
+            <text x="36" y="500" font-family="Caveat, cursive" font-size="22" fill="rgba(28,26,23,.55)" transform="rotate(-2 36 500)">start here, 2019</text>
+            <path d="M52 478 Q 44 460 36 432" stroke="rgba(28,26,23,.35)" stroke-width="1.2" stroke-dasharray="2 4"></path>
+            <path d="M232 420 l5 -9 l8 14 l8 -14 l8 14 l8 -14 l8 14 l5 -9" stroke="rgba(232,78,27,.55)" stroke-width="1.4"></path>
+            <circle cx="385" cy="420" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+            <circle cx="385" cy="300" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+            <circle cx="620" cy="300" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+            <circle cx="620" cy="360" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+            <circle cx="755" cy="360" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+            <circle cx="755" cy="190" r="4" stroke="rgba(232,78,27,.75)" stroke-width="1.4"></circle>
+            <rect x="100" y="375" width="100" height="90" stroke="rgba(28,26,23,.25)" stroke-width="1.2"></rect>
+            <rect x="330" y="260" width="110" height="80" stroke="rgba(28,26,23,.25)" stroke-width="1.2"></rect>
+            <rect x="560" y="320" width="120" height="80" stroke="rgba(28,26,23,.25)" stroke-width="1.2"></rect>
+            <rect x="720" y="120" width="70" height="70" stroke="rgba(28,26,23,.25)" stroke-width="1.2"></rect>
+            <circle r="4.5" fill="#E84E1B"><animateMotion dur="12s" repeatCount="indefinite" path="M30 420 H385 V300 H620 V360 H755 V190"></animateMotion></circle>
+            <circle r="3" fill="#E84E1B" opacity=".55"><animateMotion dur="12s" begin="6s" repeatCount="indefinite" path="M30 420 H385 V300 H620 V360 H755 V190"></animateMotion></circle>
+          </svg>
+          <div class="chip-shadow" style="left:106px;top:383px;width:100px;height:90px"></div>
+          <div class="chip-shadow" style="left:336px;top:268px;width:110px;height:80px"></div>
+          <div class="chip-shadow" style="left:566px;top:328px;width:120px;height:80px"></div>
+          <div class="chip-shadow" style="left:724px;top:126px;width:70px;height:70px;filter:blur(5px);background:rgba(28,26,23,.12)"></div>
+          <div class="chip chip--26" style="left:100px;top:375px;width:100px;height:90px"><span class="chip-num">01</span><span>EEE</span></div>
+          <div class="chip chip--22" style="left:330px;top:260px;width:110px;height:80px"><span class="chip-num">02</span><span>MERN</span></div>
+          <div class="chip chip--22" style="left:560px;top:320px;width:120px;height:80px"><span class="chip-num">03</span><span>GO·PG</span></div>
+          <div class="chip chip--uplink" style="left:720px;top:120px;width:70px;height:70px">UPLINK</div>
+          <div class="board-tag" style="left:75px;top:330px;width:150px">
+            <div class="board-tag-card" style="transform:rotate(-1deg)">
+              <div class="board-tag-num">01 · 2019</div>
+              <div class="board-tag-title">Circuits</div>
+              <div class="board-tag-sub">electrical engineering</div>
+            </div>
+          </div>
+          <div class="board-tag" style="left:310px;top:215px;width:150px">
+            <div class="board-tag-card" style="transform:rotate(1deg)">
+              <div class="board-tag-num">02 · 2022</div>
+              <div class="board-tag-title">First clients</div>
+              <div class="board-tag-sub">freelance MERN apps</div>
+            </div>
+          </div>
+          <div class="board-tag" style="left:545px;top:275px;width:160px">
+            <div class="board-tag-card" style="transform:rotate(-1deg)">
+              <div class="board-tag-num">03 · 2023</div>
+              <div class="board-tag-title">Production</div>
+              <div class="board-tag-sub">Perleybrook Labs</div>
+            </div>
+          </div>
+          <div class="riser">
+            <div class="riser-dot"></div>
+            <div class="riser-dot riser-dot--late"></div>
+          </div>
+          <div class="board-cloud">
+            <svg viewBox="0 0 220 90" class="cloud-float" fill="none" aria-hidden="true">
+              <path d="M50 72 A 22 22 0 1 1 66 36 A 27 27 0 1 1 116 32 A 20 20 0 1 1 140 72 Z" stroke="rgba(28,26,23,.5)" stroke-width="1.6"></path>
+            </svg>
+            <div class="board-cloud-label">04 · NOW — CLOUD</div>
+          </div>
+        </div>
+      </div>
+      <p class="board-note">seven years, one trace ↑</p>
+    </section>
+
+    <!-- ============ JOURNEY ============ -->
+    <section id="journey" data-journey class="journey">
+      <p data-rv class="kicker">// the journey, in four stops</p>
+
+      <div data-spine class="spine" aria-hidden="true">
+        <div data-spine-fill class="spine-fill"></div>
+        <svg viewBox="0 0 34 34" class="spine-chip" fill="none">
+          <rect x="6" y="6" width="22" height="22" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></rect>
+          <path d="M11 1 V6 M17 1 V6 M23 1 V6 M11 28 V33 M17 28 V33 M23 28 V33 M1 11 H6 M1 17 H6 M1 23 H6 M28 11 H33 M28 17 H33 M28 23 H33" stroke="rgba(28,26,23,.4)" stroke-width="1.4"></path>
+          <circle cx="17" cy="17" r="2.5" fill="#E84E1B"></circle>
+        </svg>
+      </div>
+
+      {stops.map((st) => (
+        <article data-rv class="stop">
+          <div data-stopdot class="stop-dot"></div>
+          <div class="stop-head">
+            <span class="stop-when">{st.when}</span>
+            <span class="stop-note">{st.note}</span>
+          </div>
+          <h2 class="stop-title">{st.title}</h2>
+          <p class="stop-body">{st.body}</p>
+          <div class="stop-meta">{st.meta}</div>
+          {st.circuit && (
+            <svg viewBox="0 0 420 120" class="stop-circuit" fill="none" aria-hidden="true">
+              <path d="M10 60 H110 V25 H195 M225 25 H310 V60 H410" stroke="rgba(28,26,23,.4)" stroke-width="1.4"></path>
+              <path d="M10 95 H70 V60" stroke="rgba(232,78,27,.5)" stroke-width="1.4"></path>
+              <rect x="195" y="17" width="30" height="16" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></rect>
+              <circle cx="110" cy="60" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+              <circle cx="310" cy="60" r="3.5" stroke="rgba(28,26,23,.5)" stroke-width="1.4"></circle>
+              <circle cx="70" cy="95" r="3.5" stroke="rgba(232,78,27,.65)" stroke-width="1.4"></circle>
+              <circle r="3" fill="#E84E1B"><animateMotion dur="5.5s" repeatCount="indefinite" path="M10 60 H110 V25 H210 V60 H310 V60 H410"></animateMotion></circle>
+            </svg>
+          )}
+        </article>
+      ))}
+
+      <div data-rv class="terminus">
+        <svg viewBox="0 0 300 190" class="terminus-cloud cloud-float" fill="none" aria-hidden="true">
+          <path d="M75 110 A 32 32 0 1 1 98 56 A 40 40 0 1 1 172 50 A 30 30 0 1 1 208 110 Z" stroke="rgba(28,26,23,.5)" stroke-width="1.6"></path>
+          <path d="M100 190 V128 M142 190 V128 M184 190 V128" stroke="rgba(232,78,27,.35)" stroke-width="1.3" stroke-dasharray="3 6"></path>
+          <circle r="3" fill="#E84E1B"><animateMotion dur="2.8s" repeatCount="indefinite" path="M100 190 V126"></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" repeatCount="indefinite"></animate></circle>
+          <circle r="3" fill="#E84E1B"><animateMotion dur="2.8s" begin="1s" repeatCount="indefinite" path="M142 190 V126"></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" begin="1s" repeatCount="indefinite"></animate></circle>
+          <circle r="3" fill="#E84E1B"><animateMotion dur="2.8s" begin="1.9s" repeatCount="indefinite" path="M184 190 V126"></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" begin="1.9s" repeatCount="indefinite"></animate></circle>
+        </svg>
+        <p class="terminus-note">…and everything ships up here now.</p>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section id="work" class="work">
+      <div data-rv class="work-head">
+        <h2 class="work-title">Things I've shipped</h2>
+        <span class="work-sub">— four that I'm proud of</span>
+      </div>
+
+      {projects.map((p) => (
+        <article data-rv class="project">
+          <div>
+            <div class="project-tags">
+              <span class="project-num">{p.num}</span>
+              <span class="project-cat">{p.cat}</span>
+            </div>
+            <h3 class="project-name">{p.name}</h3>
+            <p class="project-desc">{p.desc}</p>
+            <div class="project-stack">{p.stackLine}</div>
+          </div>
+          <div class="project-shot-wrap">
+            <div class="project-frame" style={`transform:rotate(${p.rot})`}>
+              <div class:list={['project-shot', { 'project-shot--pattern': !p.img }]}>
+                {p.img ? (
+                  <Image src={p.img} alt={`Screenshot of ${p.name}`} width={720} class="project-img" />
+                ) : (
+                  <div class="project-ph">{p.ph}</div>
+                )}
+              </div>
+            </div>
+            <div class="tape" style={`top:-9px;left:50%;transform:translateX(-50%) rotate(${p.tapeRot});width:64px;height:20px`}></div>
+          </div>
+        </article>
+      ))}
+
+      <p data-rv class="tools">
+        <span class="kicker">// tools I reach for</span><br />
+        React &amp; TypeScript, Go, PostgreSQL, React Native, Docker, AWS &amp; GCP, and lately a lot of LLM plumbing.
+        Design happens in Figma before any of it happens in code.
+      </p>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact">
+      <svg viewBox="0 0 220 90" class="contact-cloud contact-cloud--big" fill="none" aria-hidden="true">
+        <path d="M50 72 A 22 22 0 1 1 66 36 A 27 27 0 1 1 116 32 A 20 20 0 1 1 140 72 Z" stroke="rgba(28,26,23,.35)" stroke-width="1.5"></path>
+        <circle r="2.5" fill="#E84E1B"><animateMotion dur="3s" repeatCount="indefinite" path="M95 90 V78"></animateMotion><animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"></animate></circle>
+      </svg>
+      <svg viewBox="0 0 220 90" class="contact-cloud contact-cloud--small" fill="none" aria-hidden="true">
+        <path d="M50 72 A 22 22 0 1 1 66 36 A 27 27 0 1 1 116 32 A 20 20 0 1 1 140 72 Z" stroke="rgba(28,26,23,.3)" stroke-width="1.5"></path>
+      </svg>
+      <p data-rv class="kicker">// the next stop</p>
+      <h2 data-rv data-rv-delay="120" class="contact-title">The next station is unwritten. <em class="contact-em">Maybe it's yours?</em></h2>
+      <div data-rv data-rv-delay="220" class="contact-row">
+        <a href="mailto:anoobsuresh0@gmail.com" class="contact-mail">anoobsuresh0@gmail.com</a>
+        <span class="contact-note">I reply fast, promise.</span>
+      </div>
+      <footer class="footer">
+        <span>© {new Date().getFullYear()} Anoob Suresh — Kerala, India</span>
+        <div class="footer-links">
+          <a href="https://github.com/anoobsuresh0" rel="me">GitHub</a>
+          <a href="https://linkedin.com/in/anoobsuresh0" rel="me">LinkedIn</a>
+          <a href="/ANOOB_SURESH_RESUME.pdf">Resume ↓</a>
+        </div>
+      </footer>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes riseUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cloudDrift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(26px); }
+  }
+  @keyframes cloudFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes sparkPulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.25; }
+  }
+  @keyframes riseDot {
+    0% { transform: translateY(0); opacity: 0; }
+    12% { opacity: 1; }
+    88% { opacity: 1; }
+    100% { transform: translateY(-144px); opacity: 0; }
+  }
+
+  .kicker {
+    margin: 0;
+    font: 500 13px 'JetBrains Mono', monospace;
+    letter-spacing: 0.14em;
+    color: #e84e1b;
+  }
+  .nowrap { white-space: nowrap; }
+
+  /* ---- nav ---- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 80;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 22px 40px;
+    background: linear-gradient(#f4efe6 55%, rgba(244, 239, 230, 0));
+    box-sizing: border-box;
+  }
+  .nav-name { font: 600 20px 'EB Garamond', serif; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 28px; align-items: baseline; font-size: 17px; }
+  .nav-link { border-bottom: 1px solid rgba(28, 26, 23, 0.25); }
+  .nav-link:hover { border-bottom-color: #e84e1b; }
+  .nav-hello { color: #e84e1b; border-bottom: 1px solid #e84e1b; }
+
+  /* ---- hero ---- */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 120px 40px 60px;
+  }
+  .hero-traces {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .spark { animation: sparkPulse 2.4s ease-in-out infinite; }
+  .hero-grid {
+    max-width: 1060px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 70px;
+    align-items: center;
+    position: relative;
+  }
+  .hero-kicker { opacity: 0; animation: fadeIn 0.8s 0.1s ease forwards; }
+  .hero-title {
+    margin: 22px 0 0;
+    font: 500 clamp(46px, 6.4vw, 84px) / 1.08 'EB Garamond', serif;
+    letter-spacing: -0.015em;
+    animation: riseUp 1s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-cloud { color: #e84e1b; font-style: italic; }
+  .hero-lede {
+    margin: 28px 0 0;
+    max-width: 520px;
+    font-size: 20px;
+    line-height: 1.65;
+    color: rgba(28, 26, 23, 0.75);
+    opacity: 0;
+    animation: fadeIn 1s 0.8s ease forwards;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 26px;
+    align-items: baseline;
+    margin-top: 34px;
+    opacity: 0;
+    animation: fadeIn 1s 1.05s ease forwards;
+  }
+  .cta-primary { font-size: 18px; color: #e84e1b; border-bottom: 1.5px solid #e84e1b; padding-bottom: 2px; }
+  .cta-secondary { font-size: 18px; border-bottom: 1px solid rgba(28, 26, 23, 0.3); padding-bottom: 2px; }
+  .polaroid-wrap { position: relative; opacity: 0; animation: fadeIn 1s 0.6s ease forwards; }
+  .polaroid {
+    background: #fdfbf6;
+    padding: 12px 12px 44px;
+    box-shadow: 0 12px 30px rgba(28, 26, 23, 0.14);
+    transform: rotate(2.2deg);
+    border: 1px solid rgba(28, 26, 23, 0.08);
+  }
+  .polaroid :global(.polaroid-img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1.08;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92);
+  }
+  .polaroid-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 10px;
+    margin: 0;
+    text-align: center;
+    font: 600 21px 'Caveat', cursive;
+    color: rgba(28, 26, 23, 0.7);
+  }
+  .tape {
+    position: absolute;
+    background: rgba(232, 78, 27, 0.25);
+    border-left: 1px dashed rgba(232, 78, 27, 0.4);
+    border-right: 1px dashed rgba(232, 78, 27, 0.4);
+  }
+
+  /* ---- 3D board ---- */
+  .board { position: relative; height: 740px; overflow: hidden; }
+  .board-label { position: absolute; top: 30px; left: 40px; z-index: 2; }
+  .board-hint {
+    margin: 8px 0 0;
+    font: 400 12.5px 'JetBrains Mono', monospace;
+    color: rgba(28, 26, 23, 0.5);
+  }
+  .board-stage {
+    position: absolute;
+    inset: 0;
+    perspective: 1100px;
+    perspective-origin: 50% 26%;
+  }
+  .board-tilt {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 900px;
+    height: 560px;
+    margin: -280px 0 0 -450px;
+    transform: rotateX(58deg) rotateZ(-10deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+  }
+  .board-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .chip-shadow {
+    position: absolute;
+    background: rgba(28, 26, 23, 0.15);
+    filter: blur(6px);
+    transform: translateZ(1px);
+  }
+  .chip {
+    position: absolute;
+    background: #fdfbf6;
+    border: 1.4px solid rgba(28, 26, 23, 0.5);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    font: 500 12px 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    color: rgba(28, 26, 23, 0.65);
+  }
+  .chip--26 { transform: translateZ(26px); }
+  .chip--22 { transform: translateZ(22px); }
+  .chip-num { color: #e84e1b; }
+  .chip--uplink {
+    transform: translateZ(16px);
+    flex-direction: row;
+    border-color: rgba(232, 78, 27, 0.6);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #e84e1b;
+  }
+  .board-tag { position: absolute; transform: translateZ(80px) rotateZ(10deg) rotateX(-58deg); }
+  .board-tag-card {
+    background: #fdfbf6;
+    border: 1px solid rgba(28, 26, 23, 0.25);
+    box-shadow: 0 6px 14px rgba(28, 26, 23, 0.12);
+    padding: 8px 12px;
+  }
+  .board-tag-num { font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.1em; color: #e84e1b; }
+  .board-tag-title { font: 500 17px 'EB Garamond', serif; margin-top: 2px; }
+  .board-tag-sub { font: 400 12px 'EB Garamond', serif; color: rgba(28, 26, 23, 0.55); }
+  .riser {
+    position: absolute;
+    left: 754px;
+    top: 5px;
+    width: 1.5px;
+    height: 150px;
+    border-left: 1.5px dashed rgba(232, 78, 27, 0.5);
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+  }
+  .riser-dot {
+    position: absolute;
+    bottom: 0;
+    left: -3.5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e84e1b;
+    animation: riseDot 2.8s linear infinite;
+  }
+  .riser-dot--late { animation-delay: 1.4s; }
+  .board-cloud { position: absolute; left: 655px; top: 95px; width: 200px; transform: translateZ(175px) rotateZ(10deg) rotateX(-58deg); }
+  .board-cloud :global(svg) { width: 100%; }
+  .cloud-float { animation: cloudFloat 7s ease-in-out infinite; }
+  .board-cloud-label {
+    text-align: center;
+    font: 500 11px 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    color: #e84e1b;
+    margin-top: -6px;
+  }
+  .board-note {
+    position: absolute;
+    bottom: 32px;
+    right: 8%;
+    margin: 0;
+    font: 600 22px 'Caveat', cursive;
+    color: rgba(28, 26, 23, 0.6);
+    transform: rotate(-1.5deg);
+    z-index: 2;
+  }
+
+  /* ---- journey ---- */
+  .journey {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 40px;
+    box-sizing: border-box;
+  }
+  .spine {
+    position: absolute;
+    left: calc(40px + 7px);
+    top: 150px;
+    bottom: 210px;
+    width: 1.5px;
+    background: repeating-linear-gradient(rgba(28, 26, 23, 0.25) 0 5px, transparent 5px 11px);
+  }
+  .spine-fill { position: absolute; top: 0; left: 0; width: 1.5px; height: 0%; background: #e84e1b; }
+  .spine-chip { position: absolute; top: -38px; left: 50%; transform: translateX(-50%); width: 30px; }
+  .stop { position: relative; padding: 74px 0 0 58px; }
+  .stop-dot {
+    position: absolute;
+    left: 2px;
+    top: 86px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(28, 26, 23, 0.45);
+    background: #f4efe6;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  .stop-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .stop-when { font: 500 13px 'JetBrains Mono', monospace; letter-spacing: 0.1em; color: rgba(28, 26, 23, 0.5); }
+  .stop-note { font: 600 20px 'Caveat', cursive; color: #e84e1b; transform: rotate(-1.5deg); display: inline-block; }
+  .stop-title { margin: 10px 0 0; font: 500 clamp(30px, 3.8vw, 44px) / 1.15 'EB Garamond', serif; letter-spacing: -0.01em; }
+  .stop-body { margin: 14px 0 0; max-width: 560px; font-size: 19px; line-height: 1.65; color: rgba(28, 26, 23, 0.75); }
+  .stop-meta { margin-top: 14px; font: 400 12.5px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: rgba(28, 26, 23, 0.45); }
+  .stop-circuit { width: min(400px, 68vw); margin-top: 22px; }
+  .terminus { position: relative; padding: 60px 0 30px 58px; }
+  .terminus-cloud { width: min(250px, 55vw); margin-left: -36px; }
+  .terminus-note { margin: -8px 0 0; font: 600 22px 'Caveat', cursive; color: rgba(28, 26, 23, 0.65); transform: rotate(-1deg); }
+
+  /* ---- work ---- */
+  .work { max-width: 1060px; margin: 0 auto; padding: 110px 40px 30px; box-sizing: border-box; }
+  .work-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    border-bottom: 1px solid rgba(28, 26, 23, 0.2);
+    padding-bottom: 18px;
+  }
+  .work-title { margin: 0; font: 500 clamp(34px, 4.4vw, 52px) 'EB Garamond', serif; letter-spacing: -0.01em; }
+  .work-sub { font: 500 13px 'JetBrains Mono', monospace; color: rgba(28, 26, 23, 0.45); }
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 56px;
+    align-items: center;
+    padding: 64px 0;
+    border-bottom: 1px solid rgba(28, 26, 23, 0.14);
+  }
+  .project-tags { display: flex; align-items: baseline; gap: 14px; }
+  .project-num { font: 500 13px 'JetBrains Mono', monospace; color: #e84e1b; }
+  .project-cat { font: 400 12.5px 'JetBrains Mono', monospace; letter-spacing: 0.08em; color: rgba(28, 26, 23, 0.5); }
+  .project-name { margin: 10px 0 0; font: 500 clamp(28px, 3.4vw, 42px) 'EB Garamond', serif; letter-spacing: -0.01em; }
+  .project-desc { margin: 12px 0 0; font-size: 18.5px; line-height: 1.65; color: rgba(28, 26, 23, 0.75); max-width: 480px; }
+  .project-stack { margin-top: 16px; font: 400 12.5px 'JetBrains Mono', monospace; letter-spacing: 0.05em; color: rgba(28, 26, 23, 0.5); }
+  .project-shot-wrap { position: relative; }
+  .project-frame {
+    background: #fdfbf6;
+    padding: 10px 10px 12px;
+    box-shadow: 0 10px 26px rgba(28, 26, 23, 0.13);
+    border: 1px solid rgba(28, 26, 23, 0.08);
+  }
+  .project-shot { height: 220px; overflow: hidden; background: #ece8df; position: relative; }
+  .project-shot--pattern { background: repeating-linear-gradient(45deg, #ede7da 0 12px, #f4efe6 12px 24px); }
+  .project-shot :global(.project-img) { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .project-ph {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 400 12px 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    color: rgba(28, 26, 23, 0.4);
+  }
+  .tools { margin: 0; padding: 44px 0 0; font-size: 18px; line-height: 1.7; color: rgba(28, 26, 23, 0.65); max-width: 640px; }
+  .tools .kicker { display: inline; }
+
+  /* ---- contact ---- */
+  .contact { max-width: 1060px; margin: 0 auto; padding: 130px 40px 40px; box-sizing: border-box; position: relative; }
+  .contact-cloud { position: absolute; pointer-events: none; }
+  .contact-cloud--big { top: 70px; right: 6%; width: 190px; animation: cloudDrift 14s ease-in-out infinite; }
+  .contact-cloud--small { top: 220px; right: 24%; width: 120px; opacity: 0.6; animation: cloudDrift 18s 2s ease-in-out infinite reverse; }
+  .contact-title {
+    margin: 20px 0 0;
+    font: 500 clamp(40px, 6vw, 76px) / 1.12 'EB Garamond', serif;
+    letter-spacing: -0.015em;
+    max-width: 800px;
+  }
+  .contact-em { color: #e84e1b; }
+  .contact-row { margin-top: 36px; display: flex; gap: 30px; align-items: baseline; flex-wrap: wrap; }
+  .contact-mail { font-size: 22px; color: #e84e1b; border-bottom: 1.5px solid #e84e1b; padding-bottom: 2px; }
+  .contact-note { font: 600 21px 'Caveat', cursive; color: rgba(28, 26, 23, 0.6); transform: rotate(-1.5deg); display: inline-block; }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 110px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(28, 26, 23, 0.18);
+    font: 400 12.5px 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    color: rgba(28, 26, 23, 0.5);
+  }
+  .footer-links { display: flex; gap: 22px; }
+  .footer a { color: rgba(28, 26, 23, 0.7); border-bottom: 1px solid rgba(28, 26, 23, 0.25); }
+  .footer a:hover { color: #e84e1b; }
+
+  /* ---- scroll reveals (classes applied by script) ---- */
+  .rv-init {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .rv-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---- responsive ---- */
+  @media (max-width: 900px) {
+    .nav { padding: 18px 24px; }
+    .nav-links { gap: 18px; font-size: 16px; }
+    .hero { padding: 110px 24px 50px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .polaroid-wrap { max-width: 300px; }
+    .board { height: 560px; }
+    .board-tilt { transform: rotateX(58deg) rotateZ(-10deg) scale(0.62); }
+    .journey { padding: 50px 24px 30px; }
+    .spine { left: calc(24px + 7px); }
+    .work { padding: 90px 24px 30px; }
+    .project { grid-template-columns: 1fr; gap: 34px; padding: 52px 0; }
+    .project-shot-wrap { max-width: 420px; }
+    .contact { padding: 110px 24px 36px; }
+    .contact-cloud--small { display: none; }
+  }
+  @media (max-width: 520px) {
+    .board { height: 460px; }
+    .board-tilt { transform: rotateX(58deg) rotateZ(-10deg) scale(0.42); }
+    .board-note { right: 24px; }
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- journey spine fill + stop dots ----
+  const spine = document.querySelector<HTMLElement>('[data-spine]');
+  const fill = document.querySelector<HTMLElement>('[data-spine-fill]');
+  const dots = [...document.querySelectorAll<HTMLElement>('[data-stopdot]')];
+  let raf: number | null = null;
+  function spineScrub() {
+    if (!spine || !fill) return;
+    const sr = spine.getBoundingClientRect();
+    const focus = window.innerHeight * 0.55;
+    const p = Math.max(0, Math.min(1, (focus - sr.top) / sr.height));
+    fill.style.height = p * 100 + '%';
+    for (const d of dots) {
+      const dr = d.getBoundingClientRect();
+      const passed = dr.top + dr.height / 2 <= focus;
+      d.style.background = passed ? '#E84E1B' : '#F4EFE6';
+      d.style.borderColor = passed ? '#E84E1B' : 'rgba(28,26,23,.45)';
+    }
+  }
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        spineScrub();
+      });
+    },
+    { passive: true }
+  );
+  spineScrub();
+
+  // ---- 3D board mouse parallax (desktop only; CSS handles the scaled mobile board) ----
+  const tilt = document.querySelector<HTMLElement>('[data-tilt]');
+  if (tilt && !reduce && window.matchMedia('(min-width: 901px)').matches) {
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        const dx = e.clientX / window.innerWidth - 0.5;
+        const dy = e.clientY / window.innerHeight - 0.5;
+        tilt.style.transform = `rotateX(${58 - dy * 8}deg) rotateZ(${-10 + dx * 8}deg)`;
+      },
+      { passive: true }
+    );
+  }
+
+  // ---- self-drawing circuit traces ----
+  document.querySelectorAll<SVGSVGElement>('[data-draw]').forEach((svg) => {
+    const shapes = svg.querySelectorAll<SVGGeometryElement>('path, circle:not([fill])');
+    shapes.forEach((s) => {
+      if (!s.getTotalLength) return;
+      const len = s.getTotalLength();
+      s.style.strokeDasharray = String(len);
+      s.style.strokeDashoffset = String(len);
+    });
+    const dio = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          shapes.forEach((s, i) => {
+            s.style.transition = `stroke-dashoffset 1.8s ${i * 0.15}s cubic-bezier(.4,0,.2,1)`;
+            s.style.strokeDashoffset = '0';
+          });
+          dio.unobserve(e.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    dio.observe(svg);
+  });
+
+  // ---- scroll reveals ----
+  const rvs = [...document.querySelectorAll<HTMLElement>('[data-rv]')];
+  if (!reduce) {
+    for (const el of rvs) el.classList.add('rv-init');
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const el = e.target as HTMLElement;
+          setTimeout(() => el.classList.add('rv-in'), parseInt(el.dataset.rvDelay || '0', 10));
+          io.unobserve(el);
+        }
+      },
+      { threshold: 0.12 }
+    );
+    rvs.forEach((el) => io.observe(el));
+  }
+</script>
