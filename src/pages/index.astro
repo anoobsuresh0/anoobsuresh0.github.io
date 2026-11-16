@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import logo from '../assets/logo.png';
 import overwatch from '../assets/overwatch.png';
 import recruito from '../assets/recruito.png';
 import lore from '../assets/lore.jpg';
@@ -297,7 +298,7 @@ const year = now.getFullYear();
 ---
 
 <Layout
-  title="Anoob Suresh — Full Stack Developer · Go, React, PostgreSQL, AWS"
+  title="Anoob Suresh · Full Stack Developer"
   description="Full stack developer in Kerala, India. Electrical engineer turned software engineer — I build and ship systems in Go, React, TypeScript and PostgreSQL, and run them on AWS and GCP."
 >
   <div class="progress" aria-hidden="true"><div class="progfill"></div></div>
@@ -307,7 +308,7 @@ const year = now.getFullYear();
     <div class="wrap">
       <nav aria-label="Primary" class="topnav">
         <a href="#top" class="brand">
-          <span class="brand-mark">AS</span>
+          <Image src={logo} alt="" width={88} height={88} class="brand-mark" loading="eager" />
           <span class="brand-name">ANOOB SURESH</span>
         </a>
         <div class="navlinks">
@@ -738,7 +739,7 @@ const year = now.getFullYear();
   .topnav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0; border-bottom: 1px solid rgba(21,23,26,.25); }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
   .brand:hover { color: var(--ink); }
-  .brand-mark { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 2px solid var(--ink); background: var(--accent); font: 700 15px var(--mono); }
+  .brand-mark { display: block; width: 44px; height: 44px; border: 2px solid var(--ink); background: #fff; }
   .brand-name { font: 400 13px var(--mono); letter-spacing: .08em; }
   .navlinks { display: flex; flex-wrap: wrap; gap: 4px 28px; font: 400 13px var(--mono); letter-spacing: .06em; }
   .nav { text-decoration: none; padding: 12px 0; background-image: linear-gradient(var(--ink), var(--ink)); background-size: 0 2px; background-position: 0 80%; background-repeat: no-repeat; transition: background-size .3s ease; }
