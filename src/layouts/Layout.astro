@@ -1,0 +1,106 @@
+---
+import { Font } from 'astro:assets';
+import avatar from '../assets/avatar.png';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(avatar.src, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Anoob Suresh',
+  url: Astro.site?.href,
+  image: ogImage.href,
+  jobTitle: 'Full Stack Developer',
+  email: 'mailto:anoobsuresh0@gmail.com',
+  address: { '@type': 'PostalAddress', addressRegion: 'Kerala', addressCountry: 'IN' },
+  alumniOf: 'College of Engineering Cherthala',
+  worksFor: { '@type': 'Organization', name: 'Perleybrook Labs' },
+  hasCredential: 'AWS Certified Cloud Practitioner',
+  knowsAbout: ['Go', 'React', 'TypeScript', 'PostgreSQL', 'React Native', 'AWS', 'GCP', 'Docker', 'REST APIs', 'WebSocket'],
+  sameAs: ['https://github.com/anoobsuresh0', 'https://linkedin.com/in/anoobsuresh0'],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Anoob Suresh" />
+    <meta name="theme-color" content="#0E1113" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Anoob Suresh" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <Font cssVariable="--font-display" preload={[{ weight: 700 }]} />
+    <Font cssVariable="--font-body" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-mono" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a href="#journey" class="skip">Skip to content</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --accent: #3ddc97;
+    --ink: #15171a;
+    --paper: #f2eee3;
+    --night: #0e1113;
+    --panel: #14181b;
+    --line: #2e3438;
+    --muted: #a9aeb2;
+    --display: var(--font-display);
+    --body: var(--font-body);
+    --mono: var(--font-mono);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--night);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:hover { color: var(--accent); }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .skip {
+    position: absolute; left: 12px; top: -60px; z-index: 100;
+    padding: 12px 16px; background: var(--ink); color: var(--paper);
+    font: 500 14px var(--mono);
+  }
+  .skip:focus { top: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>

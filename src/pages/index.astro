@@ -1,0 +1,1138 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import overwatch from '../assets/overwatch.png';
+import recruito from '../assets/recruito.png';
+import lore from '../assets/lore.jpg';
+import chiefDashboard from '../assets/chief-dashboard.png';
+
+const EMAIL = 'anoobsuresh0@gmail.com';
+const GITHUB = 'https://github.com/anoobsuresh0';
+const LINKEDIN = 'https://linkedin.com/in/anoobsuresh0';
+
+// ---- schematic symbols (24×24, stroke-only) ----
+const icons = {
+  gnd: '<path d="M12 3v9M4 12h16M7 16h10M10 20h4"/>',
+  res: '<path d="M1 12h4l2-5 3 10 3-10 3 10 2-5h5"/>',
+  nand: '<path d="M1 9h4M1 15h4M5 5h6a7 7 0 0 1 0 14H5z"/><circle cx="19.6" cy="12" r="1.6"/><path d="M21.2 12H23"/>',
+  code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>',
+  chip: '<rect x="6" y="6" width="12" height="12"/><path d="M9 2v4M12 2v4M15 2v4M9 18v4M12 18v4M15 18v4M2 9h4M2 12h4M2 15h4M18 9h4M18 12h4M18 15h4"/>',
+  cloud: '<path d="M7 19h10a4.5 4.5 0 0 0 .6-8.96A6.5 6.5 0 0 0 5.2 11 4 4 0 0 0 7 19z"/>',
+};
+const drawable = (svg: string) => svg.replace(/<(path|rect|circle) /g, '<$1 pathLength="100" ');
+
+const chain = [
+  { icon: icons.gnd, code: '2016 · GND', label: 'Technical school' },
+  { icon: icons.res, code: '2019 · R1', label: 'B.Tech EEE' },
+  { icon: icons.nand, code: 'NAND', label: 'Nand2Tetris' },
+  { icon: icons.code, code: '2022 · WEB', label: 'Freelance' },
+  { icon: icons.chip, code: '2023 · U1', label: 'Perleybrook Labs' },
+  { icon: icons.cloud, code: 'NOW · NET', label: 'AWS · GCP', live: true },
+];
+
+const stages = [
+  {
+    n: '01', years: '2016 — 2018', title: 'Ground', icon: icons.gnd, sym: 'GND', theme: 's1',
+    role: 'Model Technical Higher Secondary School',
+    body: 'Higher secondary in Technical Science — the reference point everything else is measured against. Physics, maths and electronics, before any of it ran in a browser.',
+    tags: [],
+  },
+  {
+    n: '02', years: '2019 — 2023', title: 'Current', icon: icons.res, sym: 'R1', theme: 's2',
+    role: 'B.Tech, Electrical & Electronics Engineering · College of Engineering Cherthala',
+    body: 'Four years of circuits, machines and signals. Then Nand2Tetris — building a computer up from a single NAND gate — showed me exactly where the hardware ends and the software begins. I kept going.',
+    tags: ['Nand2Tetris Part I', 'Python Programming · Coursera'],
+  },
+  {
+    n: '03', years: '2022 — 2023', title: 'Logic', icon: icons.nand, sym: 'NAND', theme: 's3',
+    role: 'Freelance Full Stack Developer · Remote',
+    body: 'Traded the breadboard for the browser. Shipped custom MERN apps for small businesses, e-commerce stores with Stripe and PayPal checkouts, and PWAs that keep working offline and send push notifications.',
+    tags: ['MongoDB', 'Express', 'React', 'Node.js', 'Stripe · PayPal'],
+  },
+  {
+    n: '04', years: 'JUL 2023 — NOW', title: 'Systems', icon: icons.chip, sym: 'U1', theme: 's4',
+    role: 'Full Stack Developer · Perleybrook Labs Pvt Ltd',
+    body: 'Owning features end to end, from database schema to containerized deploy. Real-time monitoring, recruitment, inventory and IoT fleet tooling for FLAGMAN hardware — in Go, React, TypeScript and PostgreSQL. Leading cross-functional teams of 5+ developers across 10+ projects, running client demos and mentoring along the way.',
+    tags: ['Go · Gin', 'React · TypeScript', 'PostgreSQL', 'WebSocket', 'Redis'],
+  },
+  {
+    n: '05', years: 'LIVE', title: 'Cloud', icon: icons.cloud, sym: 'NET', theme: 's5',
+    role: 'AWS Certified Cloud Practitioner',
+    body: 'Production on AWS and GCP — Docker, Docker Compose, Traefik HTTPS routing, Jenkins pipelines and automated S3 backups. Same discipline as the lab bench: measure everything, keep it running. It all still runs on electrons.',
+    tags: ['AWS · EC2 S3 SES Route 53', 'GCP', 'Docker · Traefik', 'Jenkins CI/CD'],
+  },
+];
+
+const tracks = [
+  {
+    name: 'Full stack', stat: '60%', statLabel: 'better recruitment workflow efficiency with Recruito',
+    bullets: [
+      'Designed and deployed <strong>Project Overwatch</strong>, a real-time monitoring and operations platform in React, TypeScript and Go — on GCP, with Jenkins CI/CD for zero-downtime releases.',
+      'Built <strong>Recruito</strong>, an end-to-end recruitment and HRMS platform with AI bulk resume screening.',
+      'Architected an enterprise inventory tracking system with React, Go, PostgreSQL and Docker on GCP, DNS via AWS Route 53.',
+      'WebSocket real-time updates and analytics dashboards for FLAGMAN hardware (NVIDIA, Intel).',
+    ],
+  },
+  {
+    name: 'Cloud & DevOps', stat: '99.9%', statLabel: 'uptime on AWS EC2 and GCP, with 25% lower cost',
+    bullets: [
+      'Deployed and managed applications on AWS EC2 and GCP — 99.9% uptime and a 25% cost reduction.',
+      'Configured Jenkins CI/CD pipelines for automated testing and deployment, cutting release cycle time by 40%.',
+      'Containerized with Docker and Docker Compose for matching development and production environments.',
+      'Production and staging behind Traefik HTTPS routing, with automated S3 backups.',
+    ],
+  },
+  {
+    name: 'Frontend', stat: '50%', statLabel: 'faster page loads after performance work',
+    bullets: [
+      'Responsive, mobile-first interfaces in React, TypeScript, HTML5, CSS3 and modern JavaScript.',
+      'Built reusable React component libraries, reducing feature development time by 35%.',
+      'Managed complex application state with Redux Toolkit and tuned performance for 50% faster page loads.',
+    ],
+  },
+  {
+    name: 'Backend', stat: '−60%', statLabel: 'database load from Redis caching',
+    bullets: [
+      'Scalable backend services in Go (Gin) and Node.js, handling high concurrent request loads.',
+      'RESTful APIs over PostgreSQL schemas tuned with complex queries and stored procedures.',
+      'Secure authentication with JWT and OAuth 2.0.',
+      'Redis caching strategies that cut database load by 60%, with REST APIs documented to standard specifications.',
+    ],
+  },
+  {
+    name: 'Leadership', stat: '10+', statLabel: 'projects delivered on time with cross-functional teams',
+    bullets: [
+      'Led cross-functional teams of 5+ developers across 10+ projects, delivering on time.',
+      'Ran technical demos and client presentations.',
+      'Mentored a junior developer on code quality and best practices.',
+    ],
+  },
+];
+
+const readouts = [
+  { v: 99.9, d: 1, pre: '', suf: '%', bar: 99.9, label: 'Uptime across AWS and GCP' },
+  { v: 60, d: 0, pre: '', suf: '%', bar: 60, label: 'Faster recruitment workflow with AI screening' },
+  { v: 60, d: 0, pre: '−', suf: '%', bar: 60, label: 'Database load, via Redis caching' },
+  { v: 50, d: 0, pre: '', suf: '%', bar: 50, label: 'Faster page loads' },
+  { v: 40, d: 0, pre: '−', suf: '%', bar: 40, label: 'Release cycle time with Jenkins CI/CD' },
+  { v: 35, d: 0, pre: '', suf: '%', bar: 35, label: 'Faster feature dev from shared component libraries' },
+  { v: 25, d: 0, pre: '−', suf: '%', bar: 25, label: 'Infrastructure cost' },
+  { v: 10, d: 0, pre: '', suf: '+', bar: 100, label: 'Projects delivered, leading teams of 5+', ink: true },
+];
+
+const builds = [
+  {
+    big: true, kicker: 'U1 · OPERATIONS', name: 'Overwatch',
+    sub: 'Field service platform for the full industrial equipment lifecycle',
+    desc: 'Production, dispatch, installation and service in one mobile-first system. An offline-first PWA lets field engineers capture photos, signatures and reports with no signal, then sync through IndexedDB and background sync. Zoho Books stays in step via OAuth 2.0 and watermark-based incremental sync.',
+    stats: [['12', 'user roles'], ['59', 'schema migrations'], ['PWA', 'offline-first sync']],
+    tags: ['Go · Gin', 'React · TS', 'PostgreSQL', 'PWA', 'Docker · Traefik', 'AWS S3'],
+  },
+  {
+    big: true, kicker: 'U2 · HIRING + AI', name: 'Recruito',
+    sub: 'AI-powered recruitment and HRMS platform',
+    desc: 'Job postings, an 8-stage candidate pipeline, interviews, referrals and analytics. It batch-reads PDF and DOCX resumes into match scores, skill-gap analysis and hire / consider / reject calls — through a provider-agnostic layer that switches between Gemini, OpenRouter and Ollama at runtime.',
+    stats: [['60%', 'faster workflow'], ['8', 'pipeline stages'], ['3', 'swappable LLMs']],
+    tags: ['Go', 'React · TS', 'PostgreSQL', 'Gemini', 'S3 presigned URLs', 'Slack · Calendar'],
+  },
+  {
+    big: false, kicker: 'U3 · IOT FLEET', name: 'Flagman Connect',
+    desc: 'Desktop app for macOS, Windows and Linux to run remote device fleets over SSH/SFTP — live WebSocket progress, streamed logs, and self-updating binaries verified with SHA-256.',
+    line: '3 OS · 15+ workflows · white-label builds',
+    tags: ['Go', 'React', 'WebSocket', 'S3'],
+  },
+  {
+    big: false, kicker: 'U4 · TRACEABILITY', name: 'FITS',
+    desc: 'Flagman Inventory Tracking System. Replaced spreadsheet workflows with PostgreSQL, tracing hardware components through assembly with two-way Bill-of-Materials and lifecycle states.',
+    line: '9 component types · 47 tests · RBAC',
+    tags: ['Go · Fiber', 'React', 'PostgreSQL', 'Docker'],
+  },
+  {
+    big: false, kicker: 'U5 · MOBILE', name: 'Lore',
+    desc: 'iOS and Android app for team knowledge sharing — a curated feed of links, tweets, videos and notes. Supabase with row-level security, optimistic updates, OTA releases and share-from-any-app.',
+    line: 'Expo SDK 54 · 16+ migrations · EAS',
+    tags: ['React Native', 'Expo', 'Supabase', 'TanStack Query'],
+  },
+];
+
+type FlowNode = { k: string; t: string; s: string; queue?: boolean; provider?: boolean; paused?: boolean };
+const providers = ['Gemini', 'OpenRouter', 'Ollama'];
+
+const cases = [
+  {
+    label: 'U1 Overwatch', kicker: 'U1 · OPERATIONS · FIELD SERVICE', name: 'Overwatch',
+    tagline: 'Mobile-first field-service platform, offline by design.',
+    tags: ['Go · Gin', 'React · TS', 'PostgreSQL', 'IndexedDB', 'Docker', 'Traefik', 'AWS S3', 'Zoho Books'],
+    problem: 'Field engineers work where connectivity drops, but every installation and service visit still needs photos, signatures and a report.',
+    built: 'One platform for the whole equipment lifecycle — production, dispatch, installation, service — with an offline-first PWA and a modular Go REST API.',
+    result: '12 user roles on one system, 59 schema migrations shipped, and finance kept in step with Zoho Books.',
+    flowAria: 'Overwatch data flow: field PWA to IndexedDB queue to background sync to Go API to PostgreSQL',
+    flow: [
+      { k: '01 · CLIENT', t: 'Field PWA', s: 'Photos, signatures, reports' },
+      { k: '02 · LOCAL', t: 'IndexedDB queue', s: 'Works with no signal', queue: true },
+      { k: '03 · SYNC', t: 'Background sync', s: 'Replays when online', paused: true },
+      { k: '04 · API', t: 'Go · Gin', s: 'API-enforced RBAC', paused: true },
+      { k: '05 · DATA', t: 'PostgreSQL', s: '59 migrations' },
+    ] as FlowNode[],
+    demo: 'offline',
+    decisions: [
+      ['Offline-first', 'IndexedDB plus background sync so no report is lost in a dead zone.'],
+      ['RBAC in the API', 'permissions enforced server-side across 12 roles, not just hidden in the UI.'],
+      ['Watermark sync', 'incremental Zoho Books sync over OAuth 2.0 for customers, orders and invoices.'],
+    ],
+    img: overwatch,
+  },
+  {
+    label: 'U2 Recruito', kicker: 'U2 · HIRING · AI', name: 'Recruito',
+    tagline: 'Recruitment and HRMS with AI resume screening.',
+    tags: ['Go', 'React · TS', 'PostgreSQL', 'Gemini', 'OpenRouter', 'Ollama', 'AWS S3', 'Slack', 'Google Calendar'],
+    problem: 'Manual resume screening slowed the whole hiring workflow, and recruiters needed one place for jobs, candidates and interviews.',
+    built: 'A full HRMS — job postings, an 8-stage pipeline, interviews, referrals and analytics — with batch AI screening of PDF and DOCX resumes.',
+    result: 'Recruitment workflow efficiency up 60%, with funnel, source-of-hire and cost-per-hire dashboards.',
+    flowAria: 'Recruito screening flow: resumes to S3 to Go service to LLM layer to scores to hiring pipeline',
+    flow: [
+      { k: '01 · INPUT', t: 'Resumes', s: 'PDF / DOCX, in batches' },
+      { k: '02 · STORE', t: 'S3 presigned', s: 'Direct, secure upload' },
+      { k: '03 · SERVICE', t: 'Go screening', s: 'Parses and batches' },
+      { k: '04 · LLM LAYER', t: 'Gemini', s: 'Provider-agnostic', provider: true },
+      { k: '05 · OUTPUT', t: 'Match score', s: 'Skill gaps · hire / consider / reject' },
+      { k: '06 · PIPELINE', t: '8 stages', s: 'Admin · Dept Head · Employee' },
+    ] as FlowNode[],
+    demo: 'provider',
+    decisions: [
+      ['Provider-agnostic AI', 'one interface over Gemini, OpenRouter and Ollama, switchable at runtime.'],
+      ['Presigned uploads', 'files go straight to S3, keeping the API light.'],
+      ['Wired into the day', 'Google Calendar for interviews and Slack for the team.'],
+    ],
+    img: recruito,
+  },
+  {
+    label: 'U3 Flagman Connect', kicker: 'U3 · IOT FLEET · DESKTOP', name: 'Flagman Connect',
+    tagline: 'Managing remote device fleets from one desktop app.',
+    tags: ['Go', 'React · TS', 'WebSocket', 'SSH / SFTP', 'AWS S3'],
+    problem: 'Field engineers needed one reliable tool to update and manage remote IoT devices.',
+    built: 'A desktop app for macOS, Windows and Linux with a clean-architecture Go REST API, an embedded React UI and system tray integration.',
+    result: '15+ operational workflows, live progress on every action, and white-label builds for partners.',
+    flowAria: 'Flagman Connect flow: desktop UI to Go API to SSH and SFTP to device fleet, with WebSocket progress',
+    flow: [
+      { k: '01 · DESKTOP', t: 'React UI', s: 'macOS · Windows · Linux' },
+      { k: '02 · CORE', t: 'Go REST API', s: 'Clean architecture' },
+      { k: '03 · TRANSPORT', t: 'SSH / SFTP', s: 'Commands and file transfer' },
+      { k: '04 · EDGE', t: 'Device fleet', s: 'Multi-step updates' },
+      { k: '05 · FEEDBACK', t: 'WebSocket', s: 'Execution IDs · streamed logs' },
+    ] as FlowNode[],
+    demo: null,
+    decisions: [
+      ['One progress model', 'execution IDs give file transfers, commands and updates the same live feed.'],
+      ['Safe self-updates', 'S3-hosted builds verified with SHA-256 before install.'],
+      ['Single binary', 'frontend embedded in the Go build for easy distribution.'],
+    ],
+    img: chiefDashboard,
+  },
+  {
+    label: 'U4 FITS', kicker: 'U4 · TRACEABILITY', name: 'FITS',
+    tagline: 'Flagman Inventory Tracking System.',
+    tags: ['Go · Fiber', 'React · TS', 'PostgreSQL', 'Docker', 'Traefik'],
+    problem: 'Hardware assembly was tracked by hand in Google Sheets.',
+    built: 'A full-stack inventory platform with bidirectional Bill-of-Materials traceability, lifecycle states and CSV import / export.',
+    result: '9 component types traced into finished products, covered by 47 automated tests.',
+    flowAria: 'FITS flow: components to assembly to bill of materials to product lifecycle',
+    flow: [
+      { k: '01 · INTAKE', t: 'Components', s: '9 types · CSV import' },
+      { k: '02 · BUILD', t: 'Assembly', s: 'Parts into products' },
+      { k: '03 · TRACE', t: 'BOM graph', s: 'Both directions' },
+      { k: '04 · STATE', t: 'Lifecycle', s: 'Draft · production · dispatched' },
+      { k: '05 · ACCESS', t: 'Group RBAC', s: 'Google OAuth · JWT' },
+    ] as FlowNode[],
+    demo: null,
+    decisions: [
+      ['Trace both ways', 'from a part to its product, and from a product back to every part.'],
+      ['Real access control', 'group-based RBAC on Google OAuth 2.0 and JWT sessions.'],
+      ['Tested and shipped', '47 tests across Go and React; containerized with migrations.'],
+    ],
+    img: null,
+  },
+  {
+    label: 'U5 Lore', kicker: 'U5 · MOBILE · iOS + ANDROID', name: 'Lore',
+    tagline: 'A team knowledge feed that lives in your pocket.',
+    tags: ['React Native', 'Expo SDK 54', 'React 19', 'Supabase', 'TanStack Query', 'EAS'],
+    problem: 'Useful links, tweets, videos and notes get scattered across a team.',
+    built: 'A cross-platform app with a curated feed, Google sign-in, and share-from-other-apps, on an end-to-end Supabase backend.',
+    result: 'Production Android builds via EAS with over-the-air updates and push notifications.',
+    flowAria: 'Lore flow: share from any app to Expo app to TanStack Query to Supabase',
+    flow: [
+      { k: '01 · SHARE', t: 'Any app', s: 'Share sheet integration' },
+      { k: '02 · APP', t: 'Expo · RN', s: 'File-based routing' },
+      { k: '03 · CACHE', t: 'TanStack Query', s: 'Optimistic updates' },
+      { k: '04 · BACKEND', t: 'Supabase', s: 'Auth · Postgres · RLS' },
+      { k: '05 · SHIP', t: 'EAS', s: 'APK / AAB · OTA · push' },
+    ] as FlowNode[],
+    demo: null,
+    decisions: [
+      ['Row-level security', 'access rules live in Postgres, not in the client.'],
+      ['Optimistic UI', 'posts appear instantly while TanStack Query syncs.'],
+      ['Lean data model', 'JSONB post payloads and aggregated SQL views across 16+ migrations.'],
+    ],
+    img: lore,
+  },
+];
+
+const layers = [
+  ['L7', 'Cloud & Ops', 'AWS (EC2, S3, SES, Route 53) · GCP · Docker · Docker Compose · Traefik · Jenkins · CI/CD'],
+  ['L6', 'AI / LLM', 'Google Gemini · OpenRouter · Ollama · batch resume screening · PDF / document analysis'],
+  ['L5', 'Interface', 'React 19 · Next.js · React Native · Expo (EAS) · Redux Toolkit · Tailwind CSS · Radix UI · shadcn/ui'],
+  ['L4', 'Services', 'Go (Gin, Fiber) · Node.js · Express · REST · WebSocket · JWT · OAuth 2.0'],
+  ['L3', 'Data', 'PostgreSQL · MongoDB · Redis · Supabase · IndexedDB'],
+  ['L2', 'Languages', 'TypeScript · JavaScript (ES6+) · Go · SQL · HTML5 · CSS3'],
+  ['L1', 'Quality', 'Vitest · Playwright · Jest · Go test · Git · Postman · JIRA · Agile / Scrum'],
+  ['L0', 'Physics', 'Electrical & Electronics Engineering · logic gates (Nand2Tetris) · IoT hardware over SSH/SFTP'],
+];
+
+// Build-time fallback; the script recomputes it in the browser so it never goes stale.
+const since = new Date(2023, 6, 1);
+const now = new Date();
+const months = (now.getFullYear() - since.getFullYear()) * 12 + now.getMonth() - since.getMonth();
+const tenure = `${Math.floor(months / 12)}y ${months % 12}m`;
+const year = now.getFullYear();
+---
+
+<Layout
+  title="Anoob Suresh — Full Stack Developer · Go, React, PostgreSQL, AWS"
+  description="Full stack developer in Kerala, India. Electrical engineer turned software engineer — I build and ship systems in Go, React, TypeScript and PostgreSQL, and run them on AWS and GCP."
+>
+  <div class="progress" aria-hidden="true"><div class="progfill"></div></div>
+
+  <!-- ============ HERO ============ -->
+  <header class="gridpaper drift hero">
+    <div class="wrap">
+      <nav aria-label="Primary" class="topnav">
+        <a href="#top" class="brand">
+          <span class="brand-mark">AS</span>
+          <span class="brand-name">ANOOB SURESH</span>
+        </a>
+        <div class="navlinks">
+          <a href="#journey" class="nav">01 JOURNEY</a>
+          <a href="#experience" class="nav">02 EXPERIENCE</a>
+          <a href="#readouts" class="nav">03 READOUTS</a>
+          <a href="#builds" class="nav">04 BUILDS</a>
+          <a href="#stack" class="nav">05 STACK</a>
+          <a href="#contact" class="nav">06 CONTACT</a>
+        </div>
+      </nav>
+
+      <div id="top" class="hero-main">
+        <div class="hero-title">
+          <p class="fadeup eyebrow"><span class="led" aria-hidden="true"></span>SCHEMATIC No. AS-{year} · FULL STACK DEVELOPER · KERALA, INDIA</p>
+          <h1><span class="mask"><span class="rise">Anoob</span></span><span class="mask"><span class="rise d2">Suresh</span></span></h1>
+          <p class="fadeup fd1 hero-sub">From circuits <span class="wipewrap"><span class="wipe"></span><span class="wipetext">to cloud.</span></span></p>
+        </div>
+        <div class="fadeup fd2 hero-side">
+          <p>An electrical engineer who followed the signal up the stack. Today I build and ship full-stack systems in Go, React and PostgreSQL — and run them on AWS and GCP.</p>
+          <div class="btns">
+            <a class="btn btn-solid" href="#builds">See the builds →</a>
+            <a class="btn btn-line" href={`mailto:${EMAIL}`}>Say hello</a>
+            <a class="btn btn-line" href={LINKEDIN} rel="me noopener" target="_blank">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fadeup fd3 chain" role="img" aria-label="Signal path from 2016 technical school to cloud deployments today">
+        {chain.map((c, i) => (
+          <Fragment>
+            {i > 0 && <div class={`wire w${i}`}><div class="pulse"></div></div>}
+            <div class="chain-step">
+              <div class:list={['node', `n${i + 1}`, { live: c.live }]}>
+                <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#15171A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon} />
+              </div>
+              <span class="chain-code">{c.code}</span>
+              <span class="chain-label">{c.label}</span>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ JOURNEY ============ -->
+    <section id="journey" aria-labelledby="journey-title">
+      <div class="stage s0">
+        <div class="wrap stage-row">
+          <div aria-hidden="true" class="trace"><div class="trace-line intro-line"></div></div>
+          <div class="reveal stage-intro">
+            <h2 id="journey-title" class="h2">The signal path</h2>
+            <p>Five stages, one continuous trace. Scroll down and the paper turns to console — the same way my work moved from the bench to the cloud.</p>
+          </div>
+        </div>
+      </div>
+
+      {stages.map((s, i) => (
+        <div class:list={['stage', s.theme]}>
+          <div class="wrap stage-row">
+            <div aria-hidden="true" class="trace">
+              <div class="trace-top"></div>
+              <div class="via"></div>
+              {i < stages.length - 1 && <div class="rail"><div class="spark"></div></div>}
+            </div>
+            <div class:list={['stage-body', { first: i === 0 }]}>
+              <div class="reveal stage-meta">
+                <p class="stage-n">STAGE {s.n}</p>
+                <p class="stage-years">{s.years}</p>
+              </div>
+              <div class="reveal stage-main">
+                <h3 class="h3">{s.title}</h3>
+                <p class="stage-role">{s.role}</p>
+                <p class="stage-text">{s.body}</p>
+                {s.tags.length > 0 && (
+                  <div class="tags">{s.tags.map((t) => <span class="tag-line">{t}</span>)}</div>
+                )}
+              </div>
+              <div class="hide-sm sym">
+                <svg aria-hidden="true" width="140" height="140" viewBox="0 0 24 24" fill="none" class="draw" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round" set:html={drawable(s.icon)} />
+                <span>SYM · {s.sym}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" aria-labelledby="experience-title" class="dark">
+      <div class="wrap section-pad">
+        <div class="reveal section-head">
+          <div>
+            <p class="kicker">02 · EXPERIENCE</p>
+            <h2 id="experience-title" class="h2">Work log</h2>
+          </div>
+          <p class="section-note">Where the journey turned into a job. Pick a channel to see what I own.</p>
+        </div>
+
+        <div class="exp">
+          <div class="reveal exp-side">
+            <div class="card company">
+              <div class="company-head">
+                <div class="company-mark" aria-hidden="true">PL</div>
+                <div>
+                  <p class="company-name">Perleybrook Labs</p>
+                  <p class="dim small">Pvt Ltd · Kerala, India</p>
+                </div>
+              </div>
+              <div>
+                <p class="company-role">Full Stack Developer</p>
+                <p class="mono-sm dim">JUL 2023 — PRESENT</p>
+              </div>
+              <div class="uptime">
+                <p class="mono-label"><span class="led led-green" aria-hidden="true"></span>UPTIME HERE</p>
+                <p class="uptime-val" data-tenure>{tenure}</p>
+              </div>
+              <div class="tags auto">
+                <span class="tag">10+ projects</span><span class="tag">teams of 5+</span><span class="tag">FLAGMAN hardware</span>
+              </div>
+            </div>
+            <div class="card dashed prev">
+              <p class="mono-label">PREVIOUSLY · 2022 — 2023 · REMOTE</p>
+              <p class="company-name">Freelance Full Stack Developer</p>
+              <p class="prev-text">Custom MERN apps for small businesses, e-commerce with Stripe and PayPal payments, and PWAs with offline support and push notifications.</p>
+            </div>
+          </div>
+
+          <div class="reveal card console" data-tabgroup="track">
+            <div class="console-bar">
+              <span>perleybrook / channels</span>
+              <span data-tabpos>channel 1 / 5</span>
+            </div>
+            <div role="group" aria-label="Areas of work" class="tabrow pad">
+              {tracks.map((t, i) => (
+                <button type="button" class="tab" data-tab={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls={`track-${i}`}>
+                  0{i + 1} {t.name}
+                </button>
+              ))}
+            </div>
+            {tracks.map((t, i) => (
+              <div id={`track-${i}`} class="panelin track" data-panel={i} hidden={i !== 0}>
+                <div class="track-stat">
+                  <p class="big-num">{t.stat}</p>
+                  <p class="track-stat-label">{t.statLabel}</p>
+                </div>
+                <ul class="bullets">
+                  {t.bullets.map((b) => (
+                    <li class="bul"><span aria-hidden="true" class="caretmark">›</span><span set:html={b} /></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READOUTS ============ -->
+    <section id="readouts" aria-labelledby="readouts-title" class="dark">
+      <div class="wrap section-pad">
+        <div class="reveal section-head">
+          <div>
+            <p class="kicker">03 · READOUTS</p>
+            <h2 id="readouts-title" class="h2">Measured, not guessed</h2>
+          </div>
+          <p class="section-note">An engineer's habit: put a meter on it. These are numbers from production work at Perleybrook Labs.</p>
+        </div>
+        <div class="reveal meters" data-meters>
+          {readouts.map((r) => (
+            <div class:list={['meter', { ink: r.ink }]}>
+              <p class="meter-val" data-v={r.v} data-d={r.d} data-pre={r.pre} data-suf={r.suf}>{r.pre}{r.v.toFixed(r.d)}{r.suf}</p>
+              <p class="meter-label">{r.label}</p>
+              <div class="meter-track"><div class="meter-bar" data-bar={r.bar} style={`width:${r.bar}%`}></div></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BUILDS ============ -->
+    <section id="builds" aria-labelledby="builds-title" class="dark">
+      <div class="wrap section-pad">
+        <div class="reveal section-head">
+          <div>
+            <p class="kicker">04 · BUILDS</p>
+            <h2 id="builds-title" class="h2">Shipped modules</h2>
+          </div>
+          <p class="section-note">Each one a chip on the board — schema, API, interface and deploy, owned end to end.</p>
+        </div>
+
+        <div class="chips">
+          {builds.map((b, i) => (
+            <article class:list={['chip', 'reveal', b.big ? 'chip-big' : 'chip-sm']}>
+              <div aria-hidden="true" class="pins">
+                {Array.from({ length: b.big ? 12 : 8 }, (_, k) => <div class="pin" style={`transition-delay:${(k * (b.big ? 0.04 : 0.05)).toFixed(2)}s`}></div>)}
+              </div>
+              <div class="chip-body">
+                <div class="chip-kicker">
+                  <span>{b.kicker}</span>
+                  {b.big && <span class="accent"><span class="led" aria-hidden="true"></span>IN PRODUCTION</span>}
+                </div>
+                <h3 class="chip-name">{b.name}</h3>
+                {b.sub && <p class="chip-sub">{b.sub}</p>}
+                <p class="chip-desc">{b.desc}</p>
+                {b.stats && (
+                  <div class="chip-stats">
+                    {b.stats.map(([v, l]) => <div><p class="chip-stat">{v}</p><p class="dim small">{l}</p></div>)}
+                  </div>
+                )}
+                {b.line && <p class="chip-line">{b.line}</p>}
+                <div class="tags auto">{b.tags.map((t) => <span class="tag">{t}</span>)}</div>
+                <a href="#casefile" class="cflink" data-open={i}>Open case file →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CASE FILES ============ -->
+    <section id="casefile" aria-labelledby="case-title" class="dark">
+      <div class="wrap case-wrap" data-tabgroup="case">
+        <div class="reveal section-head case-head">
+          <div>
+            <p class="kicker">04.1 · CASE FILES</p>
+            <h2 id="case-title" class="h2 h2-sm">Inside the builds</h2>
+          </div>
+          <p class="section-note">Pick a module to see the problem, how it is wired, and the calls I made.</p>
+        </div>
+        <div role="group" aria-label="Choose a project" class="tabrow case-tabs">
+          {cases.map((c, i) => (
+            <button type="button" class="tab" data-tab={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls={`case-${i}`}>{c.label}</button>
+          ))}
+        </div>
+        <div class="reveal card">
+          {cases.map((c, i) => (
+            <div id={`case-${i}`} class="panelin casepanel" data-panel={i} hidden={i !== 0}>
+              <div class="case-top">
+                <div class="minw0">
+                  <p class="mono-sm dim">{c.kicker}</p>
+                  <h3 class="case-name">{c.name}</h3>
+                  <p class="case-tagline">{c.tagline}</p>
+                </div>
+                <div class="tags case-tags">{c.tags.map((t) => <span class="tag">{t}</span>)}</div>
+              </div>
+
+              {c.img && (
+                <figure class="shot">
+                  <Image src={c.img} alt={`${c.name} screenshot`} widths={[480, 800, 1024, 1600].filter((w) => w <= c.img!.width)} sizes="(max-width: 1240px) 90vw, 1100px" loading="lazy" decoding="async" />
+                </figure>
+              )}
+
+              <div class="pbr">
+                <div><p class="mono-label accent">THE PROBLEM</p><p class="pbr-text">{c.problem}</p></div>
+                <div><p class="mono-label accent">WHAT I BUILT</p><p class="pbr-text">{c.built}</p></div>
+                <div><p class="mono-label accent">THE RESULT</p><p class="pbr-text">{c.result}</p></div>
+              </div>
+
+              <div>
+                <p class="mono-label dim mb14">SIGNAL FLOW</p>
+                <div role="img" aria-label={c.flowAria} class="flowrow">
+                  {c.flow.map((f, k) => (
+                    <Fragment>
+                      {k > 0 && <div class:list={['flow', { 'sync-wire': f.paused }]} aria-hidden="true"><div class="dot"></div></div>}
+                      <div class="fnode">
+                        <p class="fnode-k">{f.k}</p>
+                        <p class="fnode-t" data-provider-name={f.provider ? '' : undefined}>{f.t}</p>
+                        <p class="fnode-s">{f.s}</p>
+                        {f.queue && <p class="fnode-q net" data-queue>0 queued</p>}
+                        {f.provider && (
+                          <div class="pv-chips">{providers.map((p, j) => <span class="pv-chip" data-pv-chip={j} aria-current={j === 0 ? 'true' : undefined}>{p}</span>)}</div>
+                        )}
+                      </div>
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+
+              {c.demo === 'offline' && (
+                <div class="demo" data-offline-demo>
+                  <span class="mono-label dim">TRY IT</span>
+                  <button type="button" class="tab" data-net aria-pressed="false">Go offline</button>
+                  <button type="button" class="tab" data-capture>+ Capture report</button>
+                  <span role="status" class="mono-sm net" data-net-status>ONLINE · all reports synced</span>
+                </div>
+              )}
+              {c.demo === 'provider' && (
+                <div class="demo" data-provider-demo>
+                  <span class="mono-label dim">SWITCH PROVIDER AT RUNTIME</span>
+                  {providers.map((p, j) => (
+                    <button type="button" class="tab" data-pv={j} aria-pressed={j === 0 ? 'true' : 'false'}>{p}</button>
+                  ))}
+                  <span role="status" class="mono-sm soft" data-pv-note>Same pipeline, now scoring with Gemini.</span>
+                </div>
+              )}
+
+              <div>
+                <p class="mono-label dim">KEY DECISIONS</p>
+                <div class="decisions">
+                  {c.decisions.map(([t, d], k) => (
+                    <div class="bul decision">
+                      <p class="mono-sm dim">D{k + 1}</p>
+                      <p class="decision-text"><strong>{t}</strong> — {d}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section id="stack" aria-labelledby="stack-title" class="dark stack">
+      <div class="wrap section-pad">
+        <div class="reveal section-head">
+          <div>
+            <p class="kicker">05 · STACK</p>
+            <h2 id="stack-title" class="h2">Every layer, L0 to L7</h2>
+          </div>
+          <p class="section-note">Read it bottom-up, the way I learned it: physics first, cloud last.</p>
+        </div>
+        <div class="bus">
+          <div class="busline" aria-hidden="true"></div><div class="packet" aria-hidden="true"></div>
+          {layers.map(([id, name, items], i) => (
+            <div class:list={['layer', 'reveal', { top: i === 0, 'gridpaper l0': id === 'L0' }]}>
+              <div class="layer-name"><span class="layer-id">{id}</span> <span class="layer-title">{name}</span></div>
+              <div class="layer-items">{items}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" aria-labelledby="contact-title" class="dark">
+      <div class="wrap contact">
+        <div class="reveal minw0 contact-copy">
+          <p class="kicker">06 · CONTACT</p>
+          <h2 id="contact-title" class="contact-title">Let’s build the next layer.</h2>
+          <p class="contact-text">Open to full-stack and platform roles, and to interesting problems anywhere between the device and the data center.</p>
+          <a class="btn btn-accent" href={`mailto:${EMAIL}`}>{EMAIL} →</a>
+        </div>
+        <div class="reveal card term">
+          <div class="term-bar">
+            <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
+            <span>anoob@cloud: ~</span>
+          </div>
+          <div class="term-body">
+            <p class="tl t1"><span class="accent">$</span> whoami</p>
+            <p class="tl t2">full-stack developer · go · react · cloud</p>
+            <p class="tl t3 gap"><span class="accent">$</span> cat links.txt</p>
+            <p class="tl t4">web&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://anoob.tech">anoob.tech</a></p>
+            <p class="tl t5">github&nbsp;&nbsp;&nbsp;<a href={GITHUB} rel="me noopener" target="_blank">github.com/anoobsuresh0</a></p>
+            <p class="tl t6">linkedin&nbsp;<a href={LINKEDIN} rel="me noopener" target="_blank">linkedin.com/in/anoobsuresh0</a></p>
+            <p class="tl t7">mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+            <p class="tl t8 gap"><span class="accent">$</span> locale</p>
+            <p class="tl t9">Kerala, India · English · മലയാളം · हिन्दी</p>
+            <p class="tl t10 gap"><span class="accent">$</span> <span class="caret"></span></p>
+          </div>
+        </div>
+      </div>
+      <footer class="wrap footer">
+        <span>© {year} ANOOB SURESH</span>
+        <span>DRAWN IN KERALA · DEPLOYED TO THE CLOUD</span>
+        <a href="#top">BACK TO GROUND ↑</a>
+      </footer>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  /* ---------- primitives ---------- */
+  .wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(20px, 5vw, 64px); }
+  .minw0 { min-width: 0; }
+  .accent { color: var(--accent); }
+  .dim { color: var(--muted); }
+  .soft { color: #bfc3c5; }
+  .small { margin: 2px 0 0; font-size: 14px; }
+  .mono-sm { margin: 0; font: 400 12px var(--mono); }
+  .mono-label { margin: 0 0 8px; font: 400 12px var(--mono); letter-spacing: .12em; }
+  .mb14 { margin-bottom: 14px; }
+  .kicker { margin: 0 0 12px; font: 400 13px var(--mono); letter-spacing: .12em; color: var(--accent); }
+  .h2 { margin: 0; font: 700 clamp(40px, 5vw, 72px)/1 var(--display); letter-spacing: -0.03em; }
+  .h2-sm { font-size: clamp(36px, 4.5vw, 60px); }
+  .h3 { margin: 0; font: 700 clamp(40px, 5vw, 64px)/1 var(--display); letter-spacing: -0.03em; }
+  .dark { background: var(--night); color: var(--paper); border-top: 1px solid #262b2e; }
+  .section-pad { padding-block: clamp(64px, 9vw, 96px); }
+  .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; }
+  .section-note { margin: 0; max-width: 380px; font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .card { background: var(--panel); border: 1px solid var(--line); }
+  .card.dashed { border-style: dashed; border-color: #4a5054; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tags.auto { margin-top: auto; }
+  .tag { padding: 5px 10px; background: #22282c; font: 400 12px var(--mono); }
+  .tag-line { padding: 6px 12px; border: 1px solid currentColor; font: 400 12px var(--mono); }
+
+  .gridpaper {
+    background-color: var(--paper);
+    background-image: linear-gradient(rgba(21,23,26,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(21,23,26,.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .drift { animation: drift 30s linear infinite; }
+  @keyframes drift { to { background-position: 32px 32px, 32px 32px; } }
+
+  .led { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor; margin-right: 10px; vertical-align: middle; animation: led 1.6s ease-in-out infinite; }
+  .led-green { color: #3fbf78; }
+  @keyframes led { 50% { opacity: .2; } }
+
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; text-decoration: none; font: 500 14px var(--mono); transition: transform .2s ease, box-shadow .2s ease; }
+  .btn:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+  .btn-solid { background: var(--ink); color: var(--paper); }
+  .btn-solid:hover { color: var(--paper); }
+  .btn-line { border: 2px solid var(--ink); color: var(--ink); }
+  .btn-line:hover { color: var(--ink); }
+  .btn-accent { min-height: 52px; margin-top: 32px; padding: 0 26px; background: var(--accent); color: var(--ink); font-size: 15px; font-weight: 700; max-width: 100%; overflow-wrap: anywhere; }
+  .btn-accent:hover { color: var(--ink); box-shadow: 5px 5px 0 var(--paper); }
+
+  /* ---------- progress ---------- */
+  .progress { display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 3px; }
+  .progfill { height: 3px; background: var(--accent); transform-origin: left center; }
+
+  /* ---------- hero ---------- */
+  .hero { color: var(--ink); border-bottom: 2px solid var(--ink); }
+  .topnav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0; border-bottom: 1px solid rgba(21,23,26,.25); }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .brand:hover { color: var(--ink); }
+  .brand-mark { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 2px solid var(--ink); background: var(--accent); font: 700 15px var(--mono); }
+  .brand-name { font: 400 13px var(--mono); letter-spacing: .08em; }
+  .navlinks { display: flex; flex-wrap: wrap; gap: 4px 28px; font: 400 13px var(--mono); letter-spacing: .06em; }
+  .nav { text-decoration: none; padding: 12px 0; background-image: linear-gradient(var(--ink), var(--ink)); background-size: 0 2px; background-position: 0 80%; background-repeat: no-repeat; transition: background-size .3s ease; }
+  .nav:hover { background-size: 100% 2px; color: var(--ink); }
+
+  .hero-main { display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end; padding: clamp(56px, 8vw, 88px) 0 56px; scroll-margin-top: 0; }
+  .hero-title { flex: 999 1 560px; min-width: 0; }
+  .eyebrow { margin: 0 0 28px; font: 400 13px/1.6 var(--mono); letter-spacing: .12em; color: #4a4943; }
+  .eyebrow .led { color: #2f8f5b; }
+  .hero h1 { margin: 0; font: 700 clamp(56px, 9.5vw, 148px)/.92 var(--display); letter-spacing: -0.04em; }
+  .mask { display: block; overflow: hidden; padding-bottom: .05em; }
+  .rise { display: block; animation: rise 1.1s cubic-bezier(.2,.75,.1,1) both; }
+  .rise.d2 { animation-delay: .12s; }
+  @keyframes rise { from { transform: translateY(110%); } to { transform: none; } }
+  .fadeup { animation: fadeup .9s cubic-bezier(.2,.75,.1,1) both; }
+  .fd1 { animation-delay: .35s; } .fd2 { animation-delay: .55s; } .fd3 { animation-delay: .75s; }
+  @keyframes fadeup { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  .hero-sub { margin: 28px 0 0; font: 500 clamp(28px, 3.6vw, 52px)/1.1 var(--display); letter-spacing: -0.02em; }
+  .wipewrap { position: relative; display: inline-block; padding: 0 12px; }
+  .wipe { position: absolute; inset: 0; background: var(--accent); transform-origin: left center; animation: wipe .8s cubic-bezier(.7,0,.2,1) .9s both; }
+  .wipetext { position: relative; }
+  @keyframes wipe { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .hero-side { flex: 1 1 340px; max-width: 440px; }
+  .hero-side > p { margin: 0 0 28px; font-size: 18px; line-height: 1.6; color: #2e2f2b; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .chain { display: flex; flex-wrap: wrap; gap: 24px 0; justify-content: space-between; padding: 40px 0 64px; border-top: 1px solid rgba(21,23,26,.25); }
+  .chain-step { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 0 0 120px; }
+  .node { color: var(--accent); width: 76px; height: 76px; border: 2px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: center; transition: transform .3s cubic-bezier(.2,.75,.1,1); animation: ping 5.4s ease-out infinite; }
+  .node.live { background: var(--accent); }
+  .node:hover { transform: translateY(-6px) rotate(-4deg); }
+  .n2 { animation-delay: .9s; } .n3 { animation-delay: 1.8s; } .n4 { animation-delay: 2.7s; } .n5 { animation-delay: 3.6s; } .n6 { animation-delay: 4.5s; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 currentColor; } 14%, 100% { box-shadow: 0 0 0 14px rgba(61,220,151,0); } }
+  .chain-code { font: 700 12px var(--mono); }
+  .chain-label { font-size: 13px; color: #4a4943; text-align: center; }
+  .wire { position: relative; overflow: hidden; flex: 1 1 24px; min-width: 16px; height: 2px; background: var(--ink); align-self: center; margin-top: -34px; }
+  .pulse { position: absolute; top: -2px; left: -40%; width: 40%; height: 6px; background: var(--accent); animation: pulse 5.4s linear infinite; }
+  .w1 .pulse { animation-delay: .45s; } .w2 .pulse { animation-delay: 1.35s; } .w3 .pulse { animation-delay: 2.25s; } .w4 .pulse { animation-delay: 3.15s; } .w5 .pulse { animation-delay: 4.05s; }
+  @keyframes pulse { 0% { left: -40%; } 16%, 100% { left: 100%; } }
+
+  /* ---------- journey ---------- */
+  .stage { --bg: var(--paper); --fg: var(--ink); --lbl: #4a4943; --txt: #3a3a35; background: var(--bg); color: var(--fg); }
+  .s2 { --bg: #ded8ca; --lbl: #46443e; --txt: #34332f; }
+  .s3 { --bg: #3a3d3f; --fg: var(--paper); --lbl: #c9cccE; --txt: #d8d9d6; }
+  .s3 .tag-line { border-color: #8e9295; }
+  .s4 { --bg: #1c1f21; --fg: var(--paper); --lbl: #b9bdc0; --txt: #d2d4d3; }
+  .s4 .tag-line { border-color: #6e7376; }
+  .s5 { --bg: var(--night); --fg: var(--paper); --lbl: var(--muted); --txt: #cdd0d2; }
+  .s5 .tag-line, .s5 .stage-years { color: var(--accent); }
+  .s5 .sym svg { stroke: var(--accent); }
+  .s5 .via { background: var(--accent); }
+  .stage-row { display: flex; gap: clamp(16px, 3vw, 40px); }
+  .trace { flex: 0 0 20px; display: flex; flex-direction: column; align-items: center; }
+  .intro-line { width: 2px; flex: 1; background: var(--accent); margin-top: 96px; }
+  .trace-top { flex: 0 0 92px; width: 2px; background: var(--accent); }
+  .via { color: var(--accent); flex: 0 0 20px; width: 20px; border: 3px solid var(--accent); border-radius: 50%; background: var(--bg); animation: via 3.2s ease-out infinite; }
+  @keyframes via { 0% { box-shadow: 0 0 0 0 currentColor; } 45%, 100% { box-shadow: 0 0 0 12px rgba(61,220,151,0); } }
+  .rail { position: relative; overflow: hidden; flex: 1 1 auto; width: 2px; background: var(--accent); }
+  .spark { position: absolute; left: -1px; width: 4px; height: 90px; top: -90px; border-radius: 2px; background: linear-gradient(rgba(255,255,255,0), #fff); animation: spark 3.2s cubic-bezier(.5,0,.5,1) infinite; }
+  @keyframes spark { to { top: 100%; } }
+  .stage-intro { flex: 1 1 auto; min-width: 0; padding: clamp(64px, 8vw, 88px) 0 24px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end; }
+  .stage-intro p { margin: 0; max-width: 420px; font-size: 17px; line-height: 1.6; color: #4a4943; }
+  .stage-body { flex: 1 1 auto; min-width: 0; padding: 80px 0; display: flex; flex-wrap: wrap; gap: 32px 48px; }
+  .stage-body.first { border-top: 1px solid rgba(21,23,26,.18); }
+  .s5 .stage-body { padding-bottom: 96px; }
+  .stage-meta { flex: 0 1 200px; }
+  .stage-n { margin: 0; font: 400 13px var(--mono); letter-spacing: .1em; color: var(--lbl); }
+  .stage-years { margin: 8px 0 0; font: 700 15px var(--mono); }
+  .stage-main { flex: 999 1 420px; min-width: 0; }
+  .stage-role { margin: 16px 0 0; font-size: 19px; font-weight: 600; }
+  .stage-text { margin: 14px 0 0; max-width: 620px; font-size: 17px; line-height: 1.65; color: var(--txt); }
+  .sym { flex: 0 0 200px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .sym svg { stroke: currentColor; animation: float 6s ease-in-out infinite; }
+  .sym span { font: 400 12px var(--mono); color: var(--lbl); }
+  @keyframes float { 50% { transform: translateY(-12px); } }
+
+  /* ---------- experience ---------- */
+  .exp { display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; }
+  .exp-side { flex: 1 1 300px; max-width: 100%; display: flex; flex-direction: column; gap: 24px; }
+  .company { padding: 28px; display: flex; flex-direction: column; gap: 18px; flex: 1 1 auto; }
+  .company-head { display: flex; align-items: center; gap: 14px; }
+  .company-mark { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: var(--accent); color: var(--ink); font: 700 16px var(--mono); }
+  .company-name { margin: 0; font: 700 20px var(--display); }
+  .company-role { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+  .uptime { border-top: 1px solid var(--line); padding-top: 18px; }
+  .uptime .mono-label { color: var(--muted); letter-spacing: .1em; }
+  .uptime-val { margin: 6px 0 0; font: 700 40px var(--mono); letter-spacing: -0.02em; color: var(--accent); }
+  .prev { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .prev .mono-label { margin: 0; color: var(--muted); letter-spacing: .1em; }
+  .prev-text { margin: 0; font-size: 15px; line-height: 1.6; color: #bfc3c5; }
+  .console { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; }
+  .console-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); font: 400 12px var(--mono); color: var(--muted); }
+  .tabrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tabrow.pad { padding: 20px 20px 0; }
+  .tab { min-height: 44px; padding: 0 16px; border: 1px solid #4a5054; background: transparent; color: var(--paper); font: 500 13px var(--mono); cursor: pointer; transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .15s ease; }
+  .tab:hover { border-color: var(--paper); }
+  .tab:active { transform: scale(.97); }
+  .tab[aria-pressed="true"] { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+  .panelin { animation: panelin .5s cubic-bezier(.2,.75,.1,1) both; }
+  @keyframes panelin { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .bul { animation: panelin .5s cubic-bezier(.2,.75,.1,1) both; }
+  .bul:nth-child(2) { animation-delay: .07s; } .bul:nth-child(3) { animation-delay: .14s; } .bul:nth-child(4) { animation-delay: .21s; }
+  .track { display: flex; flex-wrap: wrap; gap: 32px; padding: 32px 28px; }
+  .track-stat { flex: 1 1 200px; }
+  .big-num { margin: 0; font: 700 64px/1 var(--mono); letter-spacing: -0.03em; color: var(--accent); }
+  .track-stat-label { margin: 10px 0 0; font-size: 15px; color: #bfc3c5; }
+  .bullets { flex: 999 1 360px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .bullets li { display: flex; gap: 12px; font-size: 16px; line-height: 1.6; color: #d2d4d3; }
+  .bullets strong, .decision-text strong { color: var(--paper); }
+  .caretmark { color: var(--accent); font-family: var(--mono); }
+
+  /* ---------- readouts ---------- */
+  .meters { display: flex; flex-wrap: wrap; gap: 2px; background: #262b2e; border: 2px solid #262b2e; }
+  .meter { flex: 1 1 260px; background: #12161a; padding: 28px; --c: var(--accent); }
+  .meter.ink { --c: var(--paper); }
+  .meter-val { margin: 0; font: 700 52px var(--mono); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--c); }
+  .meter-label { margin: 8px 0 20px; font-size: 15px; color: #cdd0d2; }
+  .meter-track { height: 6px; background: #262b2e; }
+  .meter-bar { height: 6px; background: var(--c); }
+
+  /* ---------- builds ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 24px; }
+  .chip { min-width: 0; background: var(--panel); border: 1px solid var(--line); display: flex; flex-direction: column; transition: transform .4s cubic-bezier(.2,.75,.1,1), border-color .4s ease, box-shadow .4s ease; }
+  .chip:hover { transform: translateY(-8px); border-color: #6e7376; box-shadow: 0 24px 48px rgba(0,0,0,.5); }
+  .chip-big { flex: 1 1 520px; }
+  .chip-sm { flex: 1 1 340px; }
+  .pins { color: var(--accent); display: flex; justify-content: space-around; padding: 0 24px; margin-top: -1px; }
+  .pin { width: 10px; height: 8px; background: #4a5054; transition: background-color .15s ease; }
+  .chip:hover .pin { background: currentColor; }
+  .chip-body { padding: 32px; display: flex; flex-direction: column; gap: 16px; flex: 1 1 auto; }
+  .chip-sm .chip-body { padding: 28px; gap: 14px; }
+  .chip-kicker { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font: 400 12px var(--mono); color: var(--muted); }
+  .chip-name { margin: 0; font: 700 44px/1 var(--display); letter-spacing: -0.02em; }
+  .chip-sm .chip-name { font-size: 32px; line-height: 1.05; }
+  .chip-sub { margin: 0; font-size: 17px; font-weight: 500; color: #e4e2db; }
+  .chip-desc { margin: 0; font-size: 16px; line-height: 1.65; color: #bfc3c5; }
+  .chip-sm .chip-desc { font-size: 15px; }
+  .chip-stats { display: flex; flex-wrap: wrap; border-block: 1px solid var(--line); margin-top: 8px; }
+  .chip-stats > div { flex: 1 1 120px; padding: 16px 0; }
+  .chip-stat { margin: 0; font: 700 28px var(--mono); }
+  .chip-stats .small { margin-top: 4px; font-size: 13px; }
+  .chip-line { margin: 0; font: 400 13px var(--mono); color: var(--accent); }
+  .cflink { display: inline-flex; align-items: center; align-self: flex-start; min-height: 44px; margin-top: 4px; font: 500 13px var(--mono); color: var(--accent); text-decoration: none; }
+  .cflink:hover { text-decoration: underline; }
+
+  /* ---------- case files ---------- */
+  #casefile { border-top: 0; }
+  .case-wrap { padding-bottom: 96px; }
+  .case-head { margin-bottom: 32px; padding-top: 64px; border-top: 1px solid #262b2e; }
+  .case-tabs { margin-bottom: 16px; }
+  .casepanel { padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 36px; }
+  .case-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  .case-name { margin: 8px 0 0; font: 700 clamp(36px, 4.5vw, 56px)/1 var(--display); letter-spacing: -0.03em; }
+  .case-tagline { margin: 10px 0 0; font-size: 18px; color: #e4e2db; }
+  .case-tags { margin-top: 0; max-width: 460px; }
+  .shot { margin: 0; border: 1px solid var(--line); background: #0b0d0f; aspect-ratio: 16 / 9; overflow: hidden; }
+  .shot img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .pbr { display: flex; flex-wrap: wrap; gap: 24px 40px; }
+  .pbr > div { flex: 1 1 220px; }
+  .pbr-text { margin: 0; font-size: 16px; line-height: 1.6; color: #d2d4d3; }
+  .flowrow { display: flex; flex-wrap: wrap; gap: 12px 0; align-items: stretch; }
+  .fnode { flex: 1 1 140px; max-width: 220px; min-width: 130px; padding: 16px; background: #1a1f22; border: 1px solid var(--line); transition: border-color .3s ease, transform .3s cubic-bezier(.2,.75,.1,1); }
+  .fnode:hover { border-color: #6e7376; transform: translateY(-4px); }
+  .fnode-k { margin: 0; font: 400 11px var(--mono); letter-spacing: .1em; color: var(--muted); }
+  .fnode-t { margin: 6px 0 0; font: 700 18px/1.2 var(--display); }
+  .fnode-s { margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #bfc3c5; }
+  .fnode-q { margin: 10px 0 0; font: 400 12px var(--mono); }
+  .flow { position: relative; overflow: hidden; flex: 1 1 20px; min-width: 16px; height: 2px; background: #3a4246; align-self: center; color: var(--accent); }
+  .flow .dot { position: absolute; top: -3px; left: -12px; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; animation: flowdot 1.6s linear infinite; }
+  .flow:nth-child(4) .dot { animation-delay: .3s; } .flow:nth-child(6) .dot { animation-delay: .6s; } .flow:nth-child(8) .dot { animation-delay: .9s; } .flow:nth-child(10) .dot { animation-delay: 1.2s; }
+  .offline .sync-wire { background: repeating-linear-gradient(90deg, #6e7376 0 6px, transparent 6px 12px); }
+  .offline .sync-wire .dot { opacity: 0; animation-play-state: paused; }
+  @keyframes flowdot { from { left: -12px; } to { left: 100%; } }
+  .pv-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+  .pv-chip { padding: 3px 7px; font: 400 11px var(--mono); color: #bfc3c5; }
+  .pv-chip[aria-current="true"] { background: var(--accent); color: var(--ink); }
+  .demo { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px; background: #101416; border: 1px dashed #4a5054; }
+  .demo .mono-label { margin: 0; letter-spacing: .1em; }
+  .demo .tab { border-color: #6e7376; }
+  .demo .mono-sm { font-size: 13px; }
+  /* network state colours for the Overwatch demo */
+  .net { color: var(--accent); }
+  .syncing .net { color: #8fb8ff; }
+  .offline .net { color: #f2b33d; }
+  .decisions { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .decision { flex: 1 1 220px; padding: 18px; border-top: 2px solid #3a4246; }
+  .decision-text { margin: 6px 0 0; font-size: 15px; line-height: 1.55; color: #d2d4d3; }
+
+  /* ---------- stack ---------- */
+  .stack { background: #111517; }
+  .bus { position: relative; padding-left: 28px; display: flex; flex-direction: column; gap: 6px; }
+  .busline { position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+  .packet { position: absolute; left: 5px; width: 8px; height: 8px; background: var(--accent); animation: packet 4s cubic-bezier(.6,0,.4,1) infinite; }
+  @keyframes packet { 0% { top: calc(100% - 8px); opacity: 0; } 10%, 90% { opacity: 1; } 100% { top: 0; opacity: 0; } }
+  .layer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 20px 24px; background: #1a1f22; transition: transform .3s cubic-bezier(.2,.75,.1,1), background-color .3s ease; }
+  .layer:hover { transform: translateX(10px); background-color: #252c30; }
+  .layer.top { border-left: 6px solid var(--accent); }
+  .layer.l0 { color: var(--ink); }
+  .layer.l0:hover { background-color: var(--paper); }
+  .layer-name { flex: 0 0 200px; }
+  .layer-id { font: 400 13px var(--mono); color: var(--accent); }
+  .l0 .layer-id { color: #4a4943; }
+  .layer-title { font: 700 20px var(--display); margin-left: 8px; }
+  .layer-items { flex: 1 1 400px; min-width: 0; font: 400 14px/1.8 var(--mono); color: #d7d9d8; }
+  .l0 .layer-items { color: #2e2f2b; }
+
+  /* ---------- contact ---------- */
+  .contact { padding-top: clamp(72px, 10vw, 112px); padding-bottom: 64px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
+  .contact-copy { flex: 1 1 420px; }
+  .contact-title { margin: 0; font: 700 clamp(44px, 6vw, 88px)/.98 var(--display); letter-spacing: -0.03em; }
+  .contact-text { margin: 24px 0 0; max-width: 480px; font-size: 18px; line-height: 1.6; color: #bfc3c5; }
+  .term { flex: 1 1 440px; min-width: 0; }
+  .term-bar { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .term-bar span { margin-left: 10px; font: 400 12px var(--mono); color: var(--muted); }
+  .term-dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #6e7376; }
+  .term-body { padding: 24px; font: 400 14px/1.9 var(--mono); color: #d7d9d8; overflow-wrap: anywhere; }
+  .term-body p { margin: 0; }
+  .term-body p.gap { margin-top: 14px; }
+  .term-body a { color: var(--accent); }
+  .caret { display: inline-block; width: 9px; height: 16px; vertical-align: middle; background: var(--accent); animation: caret 1s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
+  .footer { padding-top: 24px; padding-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #262b2e; font: 400 12px var(--mono); color: var(--muted); }
+  .footer a { text-decoration: none; padding: 8px 0; margin: -8px 0; }
+
+  /* ---------- scroll-driven reveals (progressive enhancement, no JS) ---------- */
+  @supports (animation-timeline: view()) {
+    .progress { display: block; }
+    .progfill { animation: grow linear both; animation-timeline: scroll(root); }
+    .reveal { animation: revealup linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
+    .draw * { stroke-dasharray: 100; animation: drawline linear both; animation-timeline: view(); animation-range: entry 20% cover 50%; }
+    .tl { animation: revealup linear both; animation-timeline: view(); }
+    .t1 { animation-range: cover 5% cover 15%; } .t2 { animation-range: cover 7% cover 17%; } .t3 { animation-range: cover 9% cover 19%; } .t4 { animation-range: cover 11% cover 21%; } .t5 { animation-range: cover 13% cover 23%; }
+    .t6 { animation-range: cover 15% cover 25%; } .t7 { animation-range: cover 17% cover 27%; } .t8 { animation-range: cover 19% cover 29%; } .t9 { animation-range: cover 21% cover 31%; } .t10 { animation-range: cover 23% cover 33%; }
+  }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes revealup { from { opacity: 0; translate: 0 56px; } to { opacity: 1; translate: 0 0; } }
+  @keyframes drawline { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 760px) {
+    .wire, .hide-sm, .flow { display: none; }
+    .fnode { max-width: none; }
+    .topnav { padding: 20px 0; }
+    .navlinks { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; width: 100%; gap: 0 12px; font-size: 12px; letter-spacing: .02em; }
+    .chain { justify-content: space-around; }
+    .chain-step { flex-basis: 104px; }
+    .stage-body { padding: 56px 0; gap: 20px; }
+    .trace-top { flex-basis: 60px; }
+    .chip-body, .chip-sm .chip-body { padding: 24px 20px; }
+    .chip-name { font-size: 36px; }
+    .big-num { font-size: 52px; }
+    .meter-val { font-size: 44px; }
+    .layer-name { flex-basis: 100%; }
+    .term-body { padding: 20px 16px; font-size: 13px; }
+    .tabrow.pad { padding: 16px 16px 0; }
+    .track { padding: 24px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .progress { display: none; }
+  }
+</style>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- tab groups: work-log channels + case files ----
+  function select(group: HTMLElement, idx: number) {
+    group.querySelectorAll<HTMLButtonElement>(':scope [data-tab]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(Number(b.dataset.tab) === idx));
+    });
+    group.querySelectorAll<HTMLElement>(':scope [data-panel]').forEach((p) => {
+      p.hidden = Number(p.dataset.panel) !== idx;
+    });
+    const pos = group.querySelector('[data-tabpos]');
+    if (pos) pos.textContent = `channel ${idx + 1} / 5`;
+  }
+  document.querySelectorAll<HTMLElement>('[data-tabgroup]').forEach((group) => {
+    group.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-tab]');
+      if (btn) select(group, Number(btn.dataset.tab));
+    });
+  });
+
+  // "Open case file →" selects that project, then the anchor scrolls to it
+  const caseGroup = document.querySelector<HTMLElement>('[data-tabgroup="case"]');
+  document.querySelectorAll<HTMLElement>('[data-open]').forEach((a) => {
+    a.addEventListener('click', () => caseGroup && select(caseGroup, Number(a.dataset.open)));
+  });
+
+  // ---- Overwatch offline-queue demo ----
+  const demo = document.querySelector<HTMLElement>('[data-offline-demo]');
+  if (demo) {
+    const panel = demo.closest<HTMLElement>('.casepanel')!;
+    const netBtn = demo.querySelector<HTMLButtonElement>('[data-net]')!;
+    const status = demo.querySelector<HTMLElement>('[data-net-status]')!;
+    const queueEl = panel.querySelector<HTMLElement>('[data-queue]')!;
+    let offline = false;
+    let queued = 0;
+    let timer: number | undefined;
+    const render = () => {
+      const syncing = !offline && queued > 0;
+      panel.classList.toggle('offline', offline);
+      panel.classList.toggle('syncing', syncing);
+      netBtn.textContent = offline ? 'Go back online' : 'Go offline';
+      netBtn.setAttribute('aria-pressed', String(offline));
+      queueEl.textContent = `${queued} queued`;
+      status.textContent = offline
+        ? 'OFFLINE · reports stay on the device'
+        : syncing
+          ? `ONLINE · syncing ${queued} report${queued === 1 ? '' : 's'}…`
+          : 'ONLINE · all reports synced';
+    };
+    const drain = () => {
+      clearTimeout(timer);
+      const tick = () => {
+        if (offline || !queued) return;
+        queued--;
+        render();
+        timer = window.setTimeout(tick, 650);
+      };
+      timer = window.setTimeout(tick, 650);
+    };
+    netBtn.addEventListener('click', () => {
+      offline = !offline;
+      render();
+      if (!offline) drain();
+    });
+    demo.querySelector('[data-capture]')!.addEventListener('click', () => {
+      queued++;
+      render();
+      if (!offline) drain();
+    });
+  }
+
+  // ---- Recruito provider switch ----
+  const pvDemo = document.querySelector<HTMLElement>('[data-provider-demo]');
+  if (pvDemo) {
+    const panel = pvDemo.closest<HTMLElement>('.casepanel')!;
+    const name = panel.querySelector<HTMLElement>('[data-provider-name]')!;
+    const note = pvDemo.querySelector<HTMLElement>('[data-pv-note]')!;
+    pvDemo.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-pv]');
+      if (!btn) return;
+      const idx = btn.dataset.pv!;
+      pvDemo.querySelectorAll('[data-pv]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      panel.querySelectorAll<HTMLElement>('[data-pv-chip]').forEach((c) => {
+        if (c.dataset.pvChip === idx) c.setAttribute('aria-current', 'true');
+        else c.removeAttribute('aria-current');
+      });
+      name.textContent = btn.textContent;
+      note.textContent = `Same pipeline, now scoring with ${btn.textContent}.`;
+    });
+  }
+
+  // ---- tenure, live ----
+  const tenureEl = document.querySelector('[data-tenure]');
+  if (tenureEl) {
+    const now = new Date();
+    const m = (now.getFullYear() - 2023) * 12 + now.getMonth() - 6;
+    tenureEl.textContent = `${Math.floor(m / 12)}y ${m % 12}m`;
+  }
+
+  // ---- readouts count up once (final values are already in the HTML) ----
+  const meters = document.querySelector<HTMLElement>('[data-meters]');
+  if (meters && !reduce && 'IntersectionObserver' in window) {
+    const vals = [...meters.querySelectorAll<HTMLElement>('[data-v]')];
+    const bars = [...meters.querySelectorAll<HTMLElement>('[data-bar]')];
+    const paint = (p: number) => {
+      vals.forEach((el) => {
+        const d = el.dataset;
+        el.textContent = d.pre + (Number(d.v) * p).toFixed(Number(d.d)) + d.suf;
+      });
+      bars.forEach((el) => (el.style.width = Number(el.dataset.bar) * p + '%'));
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        let start = 0;
+        const step = (t: number) => {
+          start ||= t;
+          const k = Math.min(1, (t - start) / 1800);
+          paint(1 - Math.pow(1 - k, 3));
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      },
+      { threshold: 0.25 }
+    );
+    // Only animate if the meters start off-screen, so nobody sees numbers jump back to zero.
+    if (meters.getBoundingClientRect().top > innerHeight) {
+      paint(0);
+      io.observe(meters);
+    }
+  }
+</script>
